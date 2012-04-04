@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "mageo"
-  s.version = ""
+  s.version = "0.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ippei94da"]
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
+    "VERSION",
     "lib/mageo.rb",
     "lib/mageo/axes.rb",
     "lib/mageo/cylinder.rb",
@@ -36,6 +37,7 @@ Gem::Specification.new do |s|
     "lib/mageo/vector.rb",
     "lib/mageo/vector3d.rb",
     "lib/mageo/vector3dinternal.rb",
+    "mageo.gemspec",
     "test/helper.rb",
     "test/test_axes.rb",
     "test/test_cylinder.rb",
