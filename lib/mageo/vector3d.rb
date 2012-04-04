@@ -9,7 +9,9 @@ require "mageo/axes.rb"
 require "mageo/vector.rb"
 require "rubygems"
 gem "malge"
+#require "malge.rb"
 require "malge/simultaneousequations.rb"
+#require "simultaneousequations.rb"
 
 # Open class to add "to_v3d" method.
 class Array
