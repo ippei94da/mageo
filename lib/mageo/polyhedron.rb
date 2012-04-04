@@ -1,0 +1,95 @@
+#! /usr/bin/env ruby
+# coding: utf-8
+
+require "rubygems"
+gem "builtinextension"
+require "array_include_eql.rb"
+
+# 多面体を表現する抽象クラス。
+# 面は必ず三角形で、たとえば四角形も2つの三角形であると考える。
+# initialize メソッドは subclass で再定義する。
+# subclass の注意点。
+#   - 凸包であることを前提とする。
+#     チェック機構は Polyhedron クラスで持っているべきだが、面倒なので後回し。
+#     3次元凸包判定の方法をぐぐったが、これといったものが見つからない。
+#   - 定義された面同士の間に隙間がないことを前提とする。
+#     チェック機構は Polyhedron クラスで持っているべきだが、面倒なので後回し。
+#   - 頂点リスト @vertices と、面リスト @vertex_indices_of_triangles を持つ。
+#     ただし、@vertex_indices_of_triangles は Triangle クラスインスタンスではなく、
+#     @vertices 内の index。
+#     see Tetrahedron.rb
+#   - メインのテストは 四面体 Tetrahedron クラスで行っている。
+class Polyhedron
+	attr_reader :vertices
+
+	class TypeError < Exception; end
+
+	# initialize で例外を返すことでインスタンスを生成できない抽象クラスを表現。
+	# subclass で再定義する。
+	def initialize()
+		raise NotImplementedError, "need to define `initialize'"
+	end
+
+	def edges
+		results = []
+		edges = triangles.each do |triangle|
+			triangle.edges.each do |edge|
+				results << edge unless results.include_eql?(edge)
+			end
+		end
+		return results
+	end
+
+	def triangles
+		results = @vertex_indices_of_triangles.map do |indices|
+			Triangle.new( indices.map{|i| @vertices[i] } )
+		end
+		return results
+	end
+
+	#面で囲まれた空間の中にあれば true を返す。
+	def inside?( pos )
+		raise TypeError if pos.class == Vector3DInternal
+
+		result = true
+		triangles.each do |triangle|
+			result = false unless triangle.same_side?( center, pos.to_v3d )
+		end
+		return result
+	end
+
+	def include?(pos, tolerance)
+		raise TypeError if pos.class == Vector3DInternal
+
+		return true if inside?( pos )
+		triangles.each do |triangle|
+			#pp pos
+			#pp triangle
+			return true if triangle.include?(pos.to_v3d, tolerance)
+		end
+		return false
+	end
+
+	# 体積を返す。
+	def volume
+		result = 0.0
+		@vertex_indices_of_triangles.each do |tri_vertices|
+			vectors =  tri_vertices.map { |i| @vertices[i] - center }
+			volume = Vector3D.scalar_triple_product( *vectors ).abs
+			volume /= 6.0
+			result += volume
+		end
+		return result
+	end
+
+	#各頂点の座標の平均値を返す。
+	def center
+		tmp = Vector3D[ 0.0, 0.0, 0.0 ]
+		@vertices.each do |vertex|
+			tmp += vertex
+		end
+		return tmp * ( 1.0 / @vertices.size.to_f ) # 座標の平均の算出
+	end
+
+end
+
