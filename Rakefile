@@ -17,8 +17,11 @@ Jeweler::Tasks.new do |gem|
   gem.name = "mageo"
   gem.homepage = "http://github.com/ippei94da/mageo"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{MAth GEOmetry library to deal with 2 and 3 dimension space.}
+  gem.description = %Q{MAth GEOmetry library to deal with 2 and 3 dimension space.
+    Cartesian and internal coordinate systems can be used.
+    This includes besic objects in 3 dimensional space.
+  }
   gem.email = "ippei94da@gmail.com"
   gem.authors = ["ippei94da"]
   # dependencies defined in Gemfile
@@ -32,13 +35,13 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
+#require 'rcov/rcovtask'
+#Rcov::RcovTask.new do |test|
+#  test.libs << 'test'
+#  test.pattern = 'test/**/test_*.rb'
+#  test.verbose = true
+#  test.rcov_opts << '--exclude "gems/*"'
+#end
 
 task :default => :test
 
