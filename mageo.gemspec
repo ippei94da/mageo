@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "mageo"
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ippei94da"]
-  s.date = "2012-04-04"
+  s.date = "2013-02-01"
   s.description = "MAth GEOmetry library to deal with 2 and 3 dimension space.\n    Cartesian and internal coordinate systems can be used.\n    This includes besic objects in 3 dimensional space.\n  "
   s.email = "ippei94da@gmail.com"
   s.extra_rdoc_files = [
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    "CHANGES",
     "Gemfile",
     "LICENSE.txt",
     "README.rdoc",
@@ -56,7 +57,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/ippei94da/mageo"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.21"
+  s.rubygems_version = "1.8.11"
   s.summary = "MAth GEOmetry library to deal with 2 and 3 dimension space."
 
   if s.respond_to? :specification_version then
@@ -64,26 +65,29 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.1.3"])
+      s.add_development_dependency(%q<bundler>, ["~> 1.2.2"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
       s.add_development_dependency(%q<builtinextension>, [">= 0"])
-      s.add_development_dependency(%q<malge>, [">= 0.0.1"])
+      s.add_development_dependency(%q<malge>, [">= 0.0.2"])
+      s.add_development_dependency(%q<psych>, [">= 0"])
     else
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
-      s.add_dependency(%q<bundler>, ["~> 1.1.3"])
+      s.add_dependency(%q<bundler>, ["~> 1.2.2"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_dependency(%q<simplecov>, [">= 0"])
       s.add_dependency(%q<builtinextension>, [">= 0"])
-      s.add_dependency(%q<malge>, [">= 0.0.1"])
+      s.add_dependency(%q<malge>, [">= 0.0.2"])
+      s.add_dependency(%q<psych>, [">= 0"])
     end
   else
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
-    s.add_dependency(%q<bundler>, ["~> 1.1.3"])
+    s.add_dependency(%q<bundler>, ["~> 1.2.2"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
     s.add_dependency(%q<simplecov>, [">= 0"])
     s.add_dependency(%q<builtinextension>, [">= 0"])
-    s.add_dependency(%q<malge>, [">= 0.0.1"])
+    s.add_dependency(%q<malge>, [">= 0.0.2"])
+    s.add_dependency(%q<psych>, [">= 0"])
   end
 end
 
