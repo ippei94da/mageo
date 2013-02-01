@@ -43,5 +43,4 @@ class Polar3D
     result.minimize_phi!
     result
   end
-
 end

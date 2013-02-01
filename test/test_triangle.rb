@@ -253,6 +253,5 @@ class TC_Triangle < Test::Unit::TestCase
     assert_equal(Segment.new(VEC_X, VEC_Y), t[1])
     assert_equal(Segment.new(VEC_Y, VEC_O), t[2])
   end
-
 end
 

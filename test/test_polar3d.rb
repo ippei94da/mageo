@@ -89,7 +89,5 @@ class TC_Polar3D < Test::Unit::TestCase
     assert_in_delta( 0.5*PI, p2pF.phi, $tolerance )
 
   end
-
-
 end
 

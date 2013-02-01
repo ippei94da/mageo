@@ -78,6 +78,5 @@ class Segment
     end
     return true
   end
-
 end
 

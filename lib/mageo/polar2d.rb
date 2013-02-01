@@ -91,5 +91,4 @@ class Polar2D
     result.minimize_theta!
     result
   end
-
 end

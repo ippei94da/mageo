@@ -16,6 +16,5 @@ class TC_Cylinder < Test::Unit::TestCase
     assert_equal(Vector3D[1.0, 2.0, 3.0], @c00.positions[1])
     assert_equal(3.0, @c00.radius)
   end
-
 end
 

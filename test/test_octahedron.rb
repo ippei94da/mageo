@@ -151,7 +151,5 @@ class TC_Octahedron < Test::Unit::TestCase
     assert_equal(true, (t.include_eql?(Segment.new(V_Y_MINUS, V_Z_PLUS))))
     assert_equal(true, (t.include_eql?(Segment.new(V_Y_MINUS, V_Z_MINUS))))
   end
-
-
 end
 

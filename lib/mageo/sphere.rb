@@ -14,6 +14,5 @@ class Sphere
     @position = Vector3D[*position]
     @radius = radius
   end
-
 end
 

@@ -221,5 +221,4 @@ class Triangle
     edge2 = (@vertices[2] - @vertices[0])
     return Axes.new([edge1, edge2, normal_vector])
   end
-
 end

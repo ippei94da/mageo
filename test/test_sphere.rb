@@ -15,6 +15,5 @@ class TC_Sphere < Test::Unit::TestCase
     assert_equal(Vector3D[0.0, 1.0, 2.0], @s00.position)
     assert_equal(3.0, @s00.radius)
   end
-
 end
 

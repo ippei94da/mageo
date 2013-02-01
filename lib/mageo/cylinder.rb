@@ -18,6 +18,5 @@ class Cylinder
     ]
     @radius = radius
   end
-
 end
 

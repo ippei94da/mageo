@@ -22,7 +22,6 @@ class TC_Array < Test::Unit::TestCase
     assert_raise( Vector3D::RangeError ){ [1.0].to_v3d }
     assert_raise( Vector3D::RangeError ){ [0.0, 1.0, 2.0, 3.0].to_v3d }
   end
-
 end
 
 class TC_Vector < Test::Unit::TestCase
@@ -424,6 +423,5 @@ class TC_Vector3D < Test::Unit::TestCase
     assert_in_delta( 0.0, vA.rotate_axis( 2, -0.25*PI )[1], $tolerance )
     assert_in_delta( 2.0, vA.rotate_axis( 2, -0.25*PI )[2], $tolerance )
   end
-
 end
 

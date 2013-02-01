@@ -242,5 +242,4 @@ class Vector3D < Vector
     tmp.rotate_axis!(axis, radian)
     tmp
   end
-
 end

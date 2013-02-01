@@ -37,6 +37,5 @@ class Tetrahedron < Polyhedron
 
     raise InitializeError, "volume is zero." if volume == 0.0
   end
-
 end
 

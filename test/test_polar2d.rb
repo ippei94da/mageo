@@ -148,6 +148,5 @@ class TC_Polar2D < Test::Unit::TestCase
     assert_in_delta( 0.5*PI, Polar2D.minimum_radian(  4.5*PI ), $tolerance )
     assert_in_delta( 1.5*PI, Polar2D.minimum_radian(  5.5*PI ), $tolerance )
   end
-
 end
 

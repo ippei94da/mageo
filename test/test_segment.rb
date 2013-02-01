@@ -77,6 +77,5 @@ class TC_Segment < Test::Unit::TestCase
   end
 
   #undef test_include?
-
 end
 

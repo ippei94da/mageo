@@ -18,6 +18,5 @@ class Vector
   def floor
     self.class[* self.map {|val| val.floor}.to_a]
   end
-
 end
 

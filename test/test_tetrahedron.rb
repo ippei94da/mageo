@@ -126,7 +126,5 @@ class TC_Tetrahedron < Test::Unit::TestCase
     assert_equal(true, (t.include_eql?(Segment.new(V_01, V_03))))
     assert_equal(true, (t.include_eql?(Segment.new(V_02, V_03))))
   end
-
-
 end
 

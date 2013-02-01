@@ -121,5 +121,4 @@ class Vector3DInternal < Vector3D
   #def initialize( a, b, c )
   # @coords = [ a, b, c ]
   #end
-
 end

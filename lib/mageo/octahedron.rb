@@ -58,5 +58,4 @@ class Octahedron < Polyhedron
       [ 1, 3, 5]
     ]
   end
-
 end

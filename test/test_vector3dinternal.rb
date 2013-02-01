@@ -20,7 +20,6 @@ class TC_Array < Test::Unit::TestCase
     assert_raise( Vector3DInternal::RangeError ){ [1.0].to_v3di }
     assert_raise( Vector3DInternal::RangeError ){ [0.0, 1.0, 2.0, 3.0].to_v3di }
   end
-
 end
 
 class TC_Vector3DInternal < Test::Unit::TestCase

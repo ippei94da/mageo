@@ -82,6 +82,5 @@ class Axes
   def to_a
     return @axes.map { |vector| vector.to_a }
   end
-
 end
 

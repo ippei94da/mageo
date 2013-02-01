@@ -68,6 +68,5 @@ class TC_Vector < Test::Unit::TestCase
     assert_equal(3, tmp.size)
 
   end
-
 end
 

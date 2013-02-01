@@ -204,6 +204,5 @@ class TC_Axes < Test::Unit::TestCase
     assert_equal(Array, t.class)
     assert_equal( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.5], [0.0, 0.5, 0.5] ] , t)
   end
-
 end
 

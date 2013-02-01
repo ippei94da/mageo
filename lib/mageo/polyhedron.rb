@@ -90,6 +90,5 @@ class Polyhedron
     end
     return tmp * ( 1.0 / @vertices.size.to_f ) # 座標の平均の算出
   end
-
 end
 
