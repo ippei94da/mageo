@@ -11,6 +11,6 @@ group :development do
   gem "jeweler", "~> 1.8.3"
   gem "simplecov", ">= 0"
   gem "builtinextension", ">= 0"
-  gem "malge", ">= 0.0.1"
+  gem "malge", ">= 0.0.2"
   gem "psych", ">= 0"
 end

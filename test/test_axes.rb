@@ -6,204 +6,204 @@ require "test/unit"
 require "mageo/axes.rb"
 
 class TC_Axes < Test::Unit::TestCase
-	$tolerance = 1.0 * 10.0**(-10)
+  $tolerance = 1.0 * 10.0**(-10)
 
-	def setup
-		@a10 = Axes.new([[1.0]])
-		@a20 = Axes.new([[1.0, 0.0], [0.0, 1.0]])
-		@a30 = Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])
-		@a40 = Axes.new([
-				[1.0, 0.0, 0.0, 0.0],
-				[0.0, 1.0, 0.0, 0.0],
-				[0.0, 0.0, 1.0, 0.0],
-				[0.0, 0.0, 0.0, 1.0]
-			]
-		)
+  def setup
+    @a10 = Axes.new([[1.0]])
+    @a20 = Axes.new([[1.0, 0.0], [0.0, 1.0]])
+    @a30 = Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])
+    @a40 = Axes.new([
+        [1.0, 0.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0, 0.0],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+      ]
+    )
 
-		@a31 = Axes.new( [ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0] ] )
-		@a32 = Axes.new( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.5], [0.0, 0.5, 0.5] ] )
-		@a33 = Axes.new( [ [1.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 0.0, 1.0] ] )
-		@a34 = Axes.new( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.0], [0.0, 0.5, 0.0] ] )
-		@a35 = Axes.new( [ [1.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 1.0] ] )
-		@a36 = Axes.new( [ [1.0, 1.0, 1.0], [0.0,-1.0,-1.0], [0.0, 0.0, 1.0] ] )
+    @a31 = Axes.new( [ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0] ] )
+    @a32 = Axes.new( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.5], [0.0, 0.5, 0.5] ] )
+    @a33 = Axes.new( [ [1.0, 0.0, 0.0], [1.0, 0.0, 0.0], [0.0, 0.0, 1.0] ] )
+    @a34 = Axes.new( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.0], [0.0, 0.5, 0.0] ] )
+    @a35 = Axes.new( [ [1.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 1.0] ] )
+    @a36 = Axes.new( [ [1.0, 1.0, 1.0], [0.0,-1.0,-1.0], [0.0, 0.0, 1.0] ] )
 
-		@vec_x = Vector[ 1.0, 0.0, 0.0 ]
-		@vec_y = Vector[ 0.0, 1.0, 0.0 ]
-		@vec_z = Vector[ 0.0, 0.0, 1.0 ]
-		@vec_0 = Vector[ 0.0, 0.0, 0.0 ]
-		@vec_1 = Vector[ 1.0, 1.0, 0.0 ]
-	end
+    @vec_x = Vector[ 1.0, 0.0, 0.0 ]
+    @vec_y = Vector[ 0.0, 1.0, 0.0 ]
+    @vec_z = Vector[ 0.0, 0.0, 1.0 ]
+    @vec_0 = Vector[ 0.0, 0.0, 0.0 ]
+    @vec_1 = Vector[ 1.0, 1.0, 0.0 ]
+  end
 
-	def test_initialize
-		assert_raise(Axes::InitializeError) { Axes.new([[]]) }
-		assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]) }
-		assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 1.0]]) }
-		assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]) }
-		assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0], [0.0, 0.0, 1.0]]) }
-		assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0]]) }
-		assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0, 0.0]]) }
+  def test_initialize
+    assert_raise(Axes::InitializeError) { Axes.new([[]]) }
+    assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]) }
+    assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [1.0, 0.0, 0.0], [0.0, 1.0, 1.0]]) }
+    assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]) }
+    assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0], [0.0, 0.0, 1.0]]) }
+    assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0]]) }
+    assert_raise(Axes::InitializeError) { Axes.new([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0, 0.0]]) }
 
-		assert_nothing_raised{ Axes.new([["1.0", "0.0", "0.0"], [0.0, 1.0, 0.0], [0.0, 0.0, 0.0]]) }
-		assert_nothing_raised{ Axes.new([[1, 0, 0], [0, 1, 0], [0, 0, 0]]) }
-	end
+    assert_nothing_raised{ Axes.new([["1.0", "0.0", "0.0"], [0.0, 1.0, 0.0], [0.0, 0.0, 0.0]]) }
+    assert_nothing_raised{ Axes.new([[1, 0, 0], [0, 1, 0], [0, 0, 0]]) }
+  end
 
-	def test_self_dependent?
-		# Righthand
-		assert_equal( false, Axes.dependent?( [ @vec_x, @vec_y, @vec_z ] ) )
-		assert_equal( false, Axes.dependent?( [ @vec_y, @vec_z, @vec_x ] ) )
-		assert_equal( false, Axes.dependent?( [ @vec_z, @vec_x, @vec_y ] ) )
-		
-		# Lefthand
-		assert_equal( false, Axes.dependent?( [ @vec_z, @vec_y, @vec_x ] ) )
-		assert_equal( false, Axes.dependent?( [ @vec_x, @vec_z, @vec_y ] ) )
-		assert_equal( false, Axes.dependent?( [ @vec_y, @vec_x, @vec_z ] ) )
-		
-		# Including zero vector.
-		assert_equal( true , Axes.dependent?( [ @vec_0, @vec_y, @vec_z ] ) )
-		assert_equal( true , Axes.dependent?( [ @vec_0, @vec_z, @vec_x ] ) )
-		assert_equal( true , Axes.dependent?( [ @vec_0, @vec_x, @vec_y ] ) )
+  def test_self_dependent?
+    # Righthand
+    assert_equal( false, Axes.dependent?( [ @vec_x, @vec_y, @vec_z ] ) )
+    assert_equal( false, Axes.dependent?( [ @vec_y, @vec_z, @vec_x ] ) )
+    assert_equal( false, Axes.dependent?( [ @vec_z, @vec_x, @vec_y ] ) )
+    
+    # Lefthand
+    assert_equal( false, Axes.dependent?( [ @vec_z, @vec_y, @vec_x ] ) )
+    assert_equal( false, Axes.dependent?( [ @vec_x, @vec_z, @vec_y ] ) )
+    assert_equal( false, Axes.dependent?( [ @vec_y, @vec_x, @vec_z ] ) )
+    
+    # Including zero vector.
+    assert_equal( true , Axes.dependent?( [ @vec_0, @vec_y, @vec_z ] ) )
+    assert_equal( true , Axes.dependent?( [ @vec_0, @vec_z, @vec_x ] ) )
+    assert_equal( true , Axes.dependent?( [ @vec_0, @vec_x, @vec_y ] ) )
 
-		# One vector is on the plane of residual two vectors.
-		assert_equal( true , Axes.dependent?( [ @vec_x, @vec_y, @vec_1 ] ) )
-	end
+    # One vector is on the plane of residual two vectors.
+    assert_equal( true , Axes.dependent?( [ @vec_x, @vec_y, @vec_1 ] ) )
+  end
 
-	def test_self_independent?
-		# Righthand
-		assert_equal( true , Axes.independent?( [ @vec_x, @vec_y, @vec_z ] ) )
-		assert_equal( true , Axes.independent?( [ @vec_y, @vec_z, @vec_x ] ) )
-		assert_equal( true , Axes.independent?( [ @vec_z, @vec_x, @vec_y ] ) )
-		
-		# Lefthand
-		assert_equal( true , Axes.independent?( [ @vec_z, @vec_y, @vec_x ] ) )
-		assert_equal( true , Axes.independent?( [ @vec_x, @vec_z, @vec_y ] ) )
-		assert_equal( true , Axes.independent?( [ @vec_y, @vec_x, @vec_z ] ) )
-		
-		# Including zero vector.
-		assert_equal( false, Axes.independent?( [ @vec_0, @vec_y, @vec_z ] ) )
-		assert_equal( false, Axes.independent?( [ @vec_0, @vec_z, @vec_x ] ) )
-		assert_equal( false, Axes.independent?( [ @vec_0, @vec_x, @vec_y ] ) )
+  def test_self_independent?
+    # Righthand
+    assert_equal( true , Axes.independent?( [ @vec_x, @vec_y, @vec_z ] ) )
+    assert_equal( true , Axes.independent?( [ @vec_y, @vec_z, @vec_x ] ) )
+    assert_equal( true , Axes.independent?( [ @vec_z, @vec_x, @vec_y ] ) )
+    
+    # Lefthand
+    assert_equal( true , Axes.independent?( [ @vec_z, @vec_y, @vec_x ] ) )
+    assert_equal( true , Axes.independent?( [ @vec_x, @vec_z, @vec_y ] ) )
+    assert_equal( true , Axes.independent?( [ @vec_y, @vec_x, @vec_z ] ) )
+    
+    # Including zero vector.
+    assert_equal( false, Axes.independent?( [ @vec_0, @vec_y, @vec_z ] ) )
+    assert_equal( false, Axes.independent?( [ @vec_0, @vec_z, @vec_x ] ) )
+    assert_equal( false, Axes.independent?( [ @vec_0, @vec_x, @vec_y ] ) )
 
-		# One vector is on the plane of residual two vectors.
-		assert_equal( false, Axes.independent?( [ @vec_x, @vec_y, @vec_1 ] ) )
-	end
+    # One vector is on the plane of residual two vectors.
+    assert_equal( false, Axes.independent?( [ @vec_x, @vec_y, @vec_1 ] ) )
+  end
 
-	def test_size
-		assert_equal( 1, @a10.size )
-		assert_equal( 2, @a20.size )
-		assert_equal( 3, @a30.size )
-		assert_equal( 4, @a40.size )
-	end
+  def test_size
+    assert_equal( 1, @a10.size )
+    assert_equal( 2, @a20.size )
+    assert_equal( 3, @a30.size )
+    assert_equal( 4, @a40.size )
+  end
 
-	def test_equal
-		assert_equal( true , @a31 == Axes.new( [ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0] ] ))
-		assert_equal( false, @a31 == Axes.new( [ [0.5, 0.5, 0.0], [0.0, 0.5, 0.5], [0.5, 0.0, 0.5] ] ))
-		assert_equal( false, @a31 == Axes.new( [ [1.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 1.0] ] ))
+  def test_equal
+    assert_equal( true , @a31 == Axes.new( [ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0] ] ))
+    assert_equal( false, @a31 == Axes.new( [ [0.5, 0.5, 0.0], [0.0, 0.5, 0.5], [0.5, 0.0, 0.5] ] ))
+    assert_equal( false, @a31 == Axes.new( [ [1.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 1.0] ] ))
 
-		assert_equal( false, @a32 == Axes.new( [ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0] ] ))
-		assert_equal( true , @a32 == Axes.new( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.5], [0.0, 0.5, 0.5] ] ))
-		assert_equal( false, @a32 == Axes.new( [ [1.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 1.0] ] ))
+    assert_equal( false, @a32 == Axes.new( [ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0] ] ))
+    assert_equal( true , @a32 == Axes.new( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.5], [0.0, 0.5, 0.5] ] ))
+    assert_equal( false, @a32 == Axes.new( [ [1.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 1.0] ] ))
 
-		assert_equal( false, @a35 == Axes.new( [ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0] ] ))
-		assert_equal( false, @a35 == Axes.new( [ [0.5, 0.5, 0.0], [0.0, 0.5, 0.5], [0.5, 0.0, 0.5] ] ))
-		assert_equal( true , @a35 == Axes.new( [ [1.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 1.0] ] ))
-	end
+    assert_equal( false, @a35 == Axes.new( [ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0] ] ))
+    assert_equal( false, @a35 == Axes.new( [ [0.5, 0.5, 0.0], [0.0, 0.5, 0.5], [0.5, 0.0, 0.5] ] ))
+    assert_equal( true , @a35 == Axes.new( [ [1.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 1.0] ] ))
+  end
 
-	def test_dependent?
-		assert_equal( false, @a31.dependent? )
-		assert_equal( false, @a32.dependent? )
-		assert_equal( true , @a33.dependent? )
-		assert_equal( true , @a34.dependent? )
-	end
+  def test_dependent?
+    assert_equal( false, @a31.dependent? )
+    assert_equal( false, @a32.dependent? )
+    assert_equal( true , @a33.dependent? )
+    assert_equal( true , @a34.dependent? )
+  end
 
-	def test_independent?
-		assert_equal( true , @a31.independent? )
-		assert_equal( true , @a32.independent? )
-		assert_equal( false, @a33.independent? )
-		assert_equal( false, @a34.independent? )
-	end
+  def test_independent?
+    assert_equal( true , @a31.independent? )
+    assert_equal( true , @a32.independent? )
+    assert_equal( false, @a33.independent? )
+    assert_equal( false, @a34.independent? )
+  end
 
-	def test_to_a
-		assert_equal( Array, @a31.to_a.class )
-		assert_equal( Array, @a31.to_a[0].class )
-		assert_equal( Array, @a31.to_a[1].class )
-		assert_equal( Array, @a31.to_a[2].class )
-		assert_in_delta( 1.0, @a31.to_a[0][0], $tolerance )
-		assert_in_delta( 0.0, @a31.to_a[0][1], $tolerance )
-		assert_in_delta( 0.0, @a31.to_a[0][2], $tolerance )
-		assert_in_delta( 0.0, @a31.to_a[1][0], $tolerance )
-		assert_in_delta( 1.0, @a31.to_a[1][1], $tolerance )
-		assert_in_delta( 0.0, @a31.to_a[1][2], $tolerance )
-		assert_in_delta( 0.0, @a31.to_a[2][0], $tolerance )
-		assert_in_delta( 0.0, @a31.to_a[2][1], $tolerance )
-		assert_in_delta( 1.0, @a31.to_a[2][2], $tolerance )
+  def test_to_a
+    assert_equal( Array, @a31.to_a.class )
+    assert_equal( Array, @a31.to_a[0].class )
+    assert_equal( Array, @a31.to_a[1].class )
+    assert_equal( Array, @a31.to_a[2].class )
+    assert_in_delta( 1.0, @a31.to_a[0][0], $tolerance )
+    assert_in_delta( 0.0, @a31.to_a[0][1], $tolerance )
+    assert_in_delta( 0.0, @a31.to_a[0][2], $tolerance )
+    assert_in_delta( 0.0, @a31.to_a[1][0], $tolerance )
+    assert_in_delta( 1.0, @a31.to_a[1][1], $tolerance )
+    assert_in_delta( 0.0, @a31.to_a[1][2], $tolerance )
+    assert_in_delta( 0.0, @a31.to_a[2][0], $tolerance )
+    assert_in_delta( 0.0, @a31.to_a[2][1], $tolerance )
+    assert_in_delta( 1.0, @a31.to_a[2][2], $tolerance )
 
-		assert_equal( Array, @a35.to_a.class )
-		assert_equal( Array, @a35.to_a[0].class )
-		assert_equal( Array, @a35.to_a[1].class )
-		assert_equal( Array, @a35.to_a[2].class )
-		assert_in_delta( 1.0, @a35.to_a[0][0], $tolerance )
-		assert_in_delta( 1.0, @a35.to_a[0][1], $tolerance )
-		assert_in_delta( 1.0, @a35.to_a[0][2], $tolerance )
-		assert_in_delta( 0.0, @a35.to_a[1][0], $tolerance )
-		assert_in_delta( 1.0, @a35.to_a[1][1], $tolerance )
-		assert_in_delta( 1.0, @a35.to_a[1][2], $tolerance )
-		assert_in_delta( 0.0, @a35.to_a[2][0], $tolerance )
-		assert_in_delta( 0.0, @a35.to_a[2][1], $tolerance )
-		assert_in_delta( 1.0, @a35.to_a[2][2], $tolerance )
-	end
+    assert_equal( Array, @a35.to_a.class )
+    assert_equal( Array, @a35.to_a[0].class )
+    assert_equal( Array, @a35.to_a[1].class )
+    assert_equal( Array, @a35.to_a[2].class )
+    assert_in_delta( 1.0, @a35.to_a[0][0], $tolerance )
+    assert_in_delta( 1.0, @a35.to_a[0][1], $tolerance )
+    assert_in_delta( 1.0, @a35.to_a[0][2], $tolerance )
+    assert_in_delta( 0.0, @a35.to_a[1][0], $tolerance )
+    assert_in_delta( 1.0, @a35.to_a[1][1], $tolerance )
+    assert_in_delta( 1.0, @a35.to_a[1][2], $tolerance )
+    assert_in_delta( 0.0, @a35.to_a[2][0], $tolerance )
+    assert_in_delta( 0.0, @a35.to_a[2][1], $tolerance )
+    assert_in_delta( 1.0, @a35.to_a[2][2], $tolerance )
+  end
 
-	def test_paren # []
-		assert_equal( Vector, @a31[0].class )
-		assert_equal( Vector, @a31[1].class )
-		assert_equal( Vector, @a31[2].class )
-		assert_in_delta( 1.0, @a31[0][0], $tolerance )
-		assert_in_delta( 0.0, @a31[0][1], $tolerance )
-		assert_in_delta( 0.0, @a31[0][2], $tolerance )
-		assert_in_delta( 0.0, @a31[1][0], $tolerance )
-		assert_in_delta( 1.0, @a31[1][1], $tolerance )
-		assert_in_delta( 0.0, @a31[1][2], $tolerance )
-		assert_in_delta( 0.0, @a31[2][0], $tolerance )
-		assert_in_delta( 0.0, @a31[2][1], $tolerance )
-		assert_in_delta( 1.0, @a31[2][2], $tolerance )
-	end
+  def test_paren # []
+    assert_equal( Vector, @a31[0].class )
+    assert_equal( Vector, @a31[1].class )
+    assert_equal( Vector, @a31[2].class )
+    assert_in_delta( 1.0, @a31[0][0], $tolerance )
+    assert_in_delta( 0.0, @a31[0][1], $tolerance )
+    assert_in_delta( 0.0, @a31[0][2], $tolerance )
+    assert_in_delta( 0.0, @a31[1][0], $tolerance )
+    assert_in_delta( 1.0, @a31[1][1], $tolerance )
+    assert_in_delta( 0.0, @a31[1][2], $tolerance )
+    assert_in_delta( 0.0, @a31[2][0], $tolerance )
+    assert_in_delta( 0.0, @a31[2][1], $tolerance )
+    assert_in_delta( 1.0, @a31[2][2], $tolerance )
+  end
 
-	def test_each
-		i = 0
-		@a31.each { |vec|
-			assert_equal( @a31[i], vec )
-			i += 1
-		}
+  def test_each
+    i = 0
+    @a31.each { |vec|
+      assert_equal( @a31[i], vec )
+      i += 1
+    }
 
-		assert_raise( NoMethodError ) { @a31.map{ |vec| vec * 2.0 } }
-	end
+    assert_raise( NoMethodError ) { @a31.map{ |vec| vec * 2.0 } }
+  end
 
-	def test_to_a
-		t = @a10.to_a
-		assert_equal(Array, t.class)
-		assert_equal([[1.0]], t)
+  def test_to_a
+    t = @a10.to_a
+    assert_equal(Array, t.class)
+    assert_equal([[1.0]], t)
 
-		t = @a20.to_a
-		assert_equal(Array, t.class)
-		assert_equal([[1.0, 0.0], [0.0, 1.0]], t)
+    t = @a20.to_a
+    assert_equal(Array, t.class)
+    assert_equal([[1.0, 0.0], [0.0, 1.0]], t)
 
-		t = @a30.to_a
-		assert_equal(Array, t.class)
-		assert_equal([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]] , t)
+    t = @a30.to_a
+    assert_equal(Array, t.class)
+    assert_equal([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]] , t)
 
-		t = @a40.to_a
-		assert_equal(Array, t.class)
-		assert_equal( [
-				[1.0, 0.0, 0.0, 0.0],
-				[0.0, 1.0, 0.0, 0.0],
-				[0.0, 0.0, 1.0, 0.0],
-				[0.0, 0.0, 0.0, 1.0]
-			], t
-		)
+    t = @a40.to_a
+    assert_equal(Array, t.class)
+    assert_equal( [
+        [1.0, 0.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0, 0.0],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+      ], t
+    )
 
-		t = @a32.to_a
-		assert_equal(Array, t.class)
-		assert_equal( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.5], [0.0, 0.5, 0.5] ] , t)
-	end
+    t = @a32.to_a
+    assert_equal(Array, t.class)
+    assert_equal( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.5], [0.0, 0.5, 0.5] ] , t)
+  end
 
 end
 

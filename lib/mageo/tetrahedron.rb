@@ -11,32 +11,32 @@ require "mageo/polyhedron.rb"
 #
 class Tetrahedron < Polyhedron
 
-	class InitializeError < Exception; end
+  class InitializeError < Exception; end
 
-	# vertices には四面体の頂点を順不同で入れた Array。
-	def initialize( vertices )
-		raise InitializeError if vertices.class != Array
-		raise InitializeError if vertices.size != 4
-		vertices.each do |vertex|
-			raise InitializeError if vertex.size != 3
-			raise InitializeError unless vertex.methods.include?( :[] )
-			raise InitializeError unless vertex.methods.include?( :map )
-		end
-		vertices.each do |vertex|
-			raise InitializeError if vertex.class == Vector3DInternal
-		end
+  # vertices には四面体の頂点を順不同で入れた Array。
+  def initialize( vertices )
+    raise InitializeError if vertices.class != Array
+    raise InitializeError if vertices.size != 4
+    vertices.each do |vertex|
+      raise InitializeError if vertex.size != 3
+      raise InitializeError unless vertex.methods.include?( :[] )
+      raise InitializeError unless vertex.methods.include?( :map )
+    end
+    vertices.each do |vertex|
+      raise InitializeError if vertex.class == Vector3DInternal
+    end
 
-		@vertices = vertices.map { |vertex| vertex.to_v3d }
+    @vertices = vertices.map { |vertex| vertex.to_v3d }
 
-		@vertex_indices_of_triangles = [
-			[ 0, 1, 2 ], 
-			[ 1, 2, 3 ],
-			[ 2, 3, 0 ], 
-			[ 3, 0, 1 ],
-		]
+    @vertex_indices_of_triangles = [
+      [ 0, 1, 2 ], 
+      [ 1, 2, 3 ],
+      [ 2, 3, 0 ], 
+      [ 3, 0, 1 ],
+    ]
 
-		raise InitializeError, "volume is zero." if volume == 0.0
-	end
+    raise InitializeError, "volume is zero." if volume == 0.0
+  end
 
 end
 
