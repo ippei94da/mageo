@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ippei94da"]
-  s.date = "2013-02-01"
+  s.date = "2013-02-02"
   s.description = "MAth GEOmetry library to deal with 2 and 3 dimension space.\n    Cartesian and internal coordinate systems can be used.\n    This includes besic objects in 3 dimensional space.\n  "
   s.email = "ippei94da@gmail.com"
   s.extra_rdoc_files = [
