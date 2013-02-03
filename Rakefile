@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "mageo"
   gem.homepage = "http://github.com/ippei94da/mageo"
   gem.license = "MIT"
-  gem.summary = %Q{MAth GEOmetry library to deal with 2 and 3 dimension space.}
-  gem.description = %Q{MAth GEOmetry library to deal with 2 and 3 dimension space.
+  gem.summary = %Q{MAth GEOmetry library to deal with 2 and 3 dimensional spaces.}
+  gem.description = %Q{MAth GEOmetry library to deal with 2 and 3 dimensional spaces.
     Cartesian and internal coordinate systems can be used.
     This includes besic objects in 3 dimensional space.
   }
