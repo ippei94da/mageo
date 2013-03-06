@@ -1,6 +1,5 @@
 module Mageo; end
 
-
 require "mageo/axes.rb"
 require "mageo/cylinder.rb"
 require "mageo/polar2d.rb"
