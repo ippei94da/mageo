@@ -3,7 +3,8 @@
 
 require "test/unit"
 require "helper"
-require "mageo/segment.rb"
+require 'mageo.rb'
+#require "mageo/segment.rb"
 
 class TC_Segment < Test::Unit::TestCase
   $tolerance = 1.0 * 10.0 ** (-10)

@@ -1,7 +1,8 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "mageo/vector3d.rb"
+require "mageo.rb"
+#require "mageo/vector3d.rb"
 
 #
 # 球を表現するクラス。

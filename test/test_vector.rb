@@ -2,8 +2,9 @@
 
 require "test/unit"
 require "matrix"
-require "mageo/vector.rb"
-require "mageo/vector3d.rb"
+require 'mageo.rb'
+#require "mageo/vector.rb"
+#require "mageo/vector3d.rb"
 
 class TC_Vector < Test::Unit::TestCase
   #include Math

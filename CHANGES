@@ -1,6 +1,7 @@
 = vasputils changelog
 
 == Master (for 0.0.2)
+  - Make a namespace 'Mageo' to include classes.
 
 == Version (for 0.0.1)
   - Change indent style from tab char to two spaces.

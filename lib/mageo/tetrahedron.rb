@@ -1,9 +1,10 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "mageo/vector3d.rb"
-require "mageo/triangle.rb"
-require "mageo/polyhedron.rb"
+require "mageo.rb"
+#require "mageo/vector3d.rb"
+#require "mageo/triangle.rb"
+#require "mageo/polyhedron.rb"
 
 
 #

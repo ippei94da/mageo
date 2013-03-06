@@ -5,7 +5,8 @@ require "test/unit"
 require "rubygems"
 gem "builtinextension"
 require "array_include_eql.rb"
-require "mageo/tetrahedron.rb"
+require 'mageo.rb'
+#require "mageo/tetrahedron.rb"
 
 class Tetrahedron
   public :center

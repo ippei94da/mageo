@@ -1,10 +1,11 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "mageo/vector3d.rb"
-require "mageo/vector3dinternal.rb"
-require "mageo/axes.rb"
-require "mageo/segment.rb"
+require "mageo.rb"
+#require "mageo/vector3d.rb"
+#require "mageo/vector3dinternal.rb"
+#require "mageo/axes.rb"
+#require "mageo/segment.rb"
 
 #3次元空間中の3角形を表現するクラス。
 #
@@ -213,12 +214,12 @@ class Triangle
   private
 
   # 三角形の2辺のベクトルと、これらからなる外積ベクトル、
-  # 合計3つのベクトルから Axes クラスインスタンスを作る。
+  # 合計3つのベクトルから Mageo::Axes クラスインスタンスを作る。
   # vertices で取り出せる3頂点のうち、0th 要素を原点とし、
   # 1st, 2nd 要素をそれぞれ順に軸としたものとする。
   def internal_axes
     edge1 = (@vertices[1] - @vertices[0])
     edge2 = (@vertices[2] - @vertices[0])
-    return Axes.new([edge1, edge2, normal_vector])
+    return Mageo::Axes.new([edge1, edge2, normal_vector])
   end
 end

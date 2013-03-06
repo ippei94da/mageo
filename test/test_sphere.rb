@@ -3,8 +3,9 @@
 
 require "helper"
 require "test/unit"
-require "mageo/sphere.rb"
-require "mageo/vector3d.rb"
+require 'mageo.rb'
+#require "mageo/sphere.rb"
+#require "mageo/vector3d.rb"
 
 class TC_Sphere < Test::Unit::TestCase
   def setup

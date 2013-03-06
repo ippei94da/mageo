@@ -3,8 +3,9 @@
 
 require "test/unit"
 require "helper"
-require "mageo/polar3d.rb"
-require "mageo/vector3d.rb"
+require 'mageo.rb'
+#require "mageo/polar3d.rb"
+#require "mageo/vector3d.rb"
 
 class TC_Polar3D < Test::Unit::TestCase
   $tolerance = 10**(-10)

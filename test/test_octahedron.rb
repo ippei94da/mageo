@@ -3,7 +3,8 @@
 
 require "test/unit"
 require "helper"
-require "mageo/octahedron.rb"
+require 'mageo.rb'
+#require "mageo/octahedron.rb"
 gem "builtinextension"
   require "array_include_eql.rb"
 

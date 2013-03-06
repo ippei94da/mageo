@@ -1,10 +1,11 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "matrix"
+require "mageo"
+#require "matrix"
 
 # n 次元空間における座標系を表現する n 本のベクトルを扱うクラス。
-class Axes
+class Mageo::Axes
   attr_reader :axes
 
   class InitializeError < Exception; end

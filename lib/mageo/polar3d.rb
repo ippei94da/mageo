@@ -1,8 +1,7 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require 'matrix'
-require 'mageo/vector3d.rb'
+require "mageo.rb"
 
 #3次元極座標。
 #極座標ライブラリでは、角度は基本的に radian を使用する。

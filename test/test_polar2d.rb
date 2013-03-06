@@ -3,8 +3,9 @@
 
 require "test/unit"
 require "helper"
-require "mageo/vector.rb"
-require "mageo/polar2d.rb"
+require 'mageo.rb'
+#require "mageo/vector.rb"
+#require "mageo/polar2d.rb"
 
 
 class TC_Vector < Test::Unit::TestCase

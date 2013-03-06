@@ -3,8 +3,9 @@
 
 require "test/unit"
 require "helper"
-require "mageo/cylinder.rb"
-require "mageo/vector3d.rb"
+require 'mageo.rb'
+#require "mageo/cylinder.rb"
+#require "mageo/vector3d.rb"
 
 class TC_Cylinder < Test::Unit::TestCase
   def setup

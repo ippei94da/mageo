@@ -2,11 +2,12 @@
 
 # written by Ippei KISHIDA
 #
-require "matrix"
-require "mageo/polar2d.rb"
-require "mageo/polar3d.rb"
-require "mageo/axes.rb"
-require "mageo/vector.rb"
+require "mageo.rb"
+#require "matrix"
+#require "mageo/polar2d.rb"
+#require "mageo/polar3d.rb"
+#require "mageo/axes.rb"
+#require "mageo/vector.rb"
 require "rubygems"
 gem "malge"
 require "malge.rb"
@@ -165,8 +166,8 @@ class Vector3D < Vector
 
   # Convert to Vector3DInternal. Non-destructive.
   def to_v3di(axes)
-    #pp axes.is_a?(Axes)
-    raise TypeError unless axes.is_a?(Axes)
+    #pp axes.is_a?(Mageo::Axes)
+    raise TypeError unless axes.is_a?(Mageo::Axes)
 
     axes = axes.to_a
     Vector3DInternal[ *(Malge::SimultaneousEquations.cramer(axes.transpose, self)) ]

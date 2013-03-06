@@ -1,9 +1,10 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "rubygems"
-gem "builtinextension"
-require "array_include_eql.rb"
+require "mageo.rb"
+#require "rubygems"
+#gem "builtinextension"
+#require "array_include_eql.rb"
 
 # 多面体を表現する抽象クラス。
 # 面は必ず三角形で、たとえば四角形も2つの三角形であると考える。

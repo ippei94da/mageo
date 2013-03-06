@@ -1,7 +1,8 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require 'matrix'
+require "mageo.rb"
+#require 'matrix'
 
 
 class Vector

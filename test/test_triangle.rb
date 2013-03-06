@@ -2,8 +2,9 @@
 # coding: utf-8
 
 require "test/unit"
-require "mageo/triangle.rb"
-require "mageo/vector3d.rb"
+require 'mageo.rb'
+#require "mageo/triangle.rb"
+#require "mageo/vector3d.rb"
 
 class Triangle
   public :internal_axes
@@ -227,7 +228,7 @@ class TC_Triangle < Test::Unit::TestCase
     @t01 = Triangle.new([[ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0], [ 0.0, 0.0, 1.0]])
     @t02 = Triangle.new([[10.0,10.0,10.0], [20.0,10.0,10.0], [10.0,20.0,10.0]])
 
-    t = Axes.new([[ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0], [ 0.0, 0.0, 1.0]])
+    t = Mageo::Axes.new([[ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0], [ 0.0, 0.0, 1.0]])
     assert_equal(t, @t00.internal_axes)
 
     t = @t01.internal_axes
@@ -241,7 +242,7 @@ class TC_Triangle < Test::Unit::TestCase
     assert_in_delta(1.0/Math.sqrt(3.0), t[2][1], $tolerance)
     assert_in_delta(1.0/Math.sqrt(3.0), t[2][2], $tolerance)
 
-    t = Axes.new([[ 10.0, 0.0, 0.0], [ 0.0, 10.0, 0.0], [ 0.0, 0.0, 1.0]])
+    t = Mageo::Axes.new([[ 10.0, 0.0, 0.0], [ 0.0, 10.0, 0.0], [ 0.0, 0.0, 1.0]])
     assert_equal(t, @t02.internal_axes)
   end
 
