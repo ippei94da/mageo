@@ -11,8 +11,8 @@ class Mageo::Cylinder
   # positions は 両底面の中心座標を入れた配列。
   def initialize(position, radius)
     @positions = [
-      Vector3D[*position[0]],
-      Vector3D[*position[1]]
+      Mageo::Vector3D[*position[0]],
+      Mageo::Vector3D[*position[1]]
     ]
     @radius = radius
   end

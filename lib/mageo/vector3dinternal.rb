@@ -2,7 +2,7 @@
 
 class Array
   def to_v3di
-    Vector3DInternal[ *self ]
+    Mageo::Vector3DInternal[ *self ]
   end
 end
 
@@ -11,16 +11,16 @@ end
 # (直交座標と間違えて)内部座標で内積を求めるなど誤った演算を例外で止めるのが目的。
 # 座標軸の情報は自身では持たない。
 # Actually, this class is very similar to Array class, except for +, -, and * methods.
-# Vector, Vector3D との混在計算は例外を発生。
+# Vector, Mageo::Vector3D との混在計算は例外を発生。
 #
 # 軸の情報は持たない。
 # 軸に関係ない抽象的な内部座標について議論することもありうるし、
 # 軸情報が必要なのは to_v3d メソッドくらいなので。
-class Vector3DInternal < Vector3D
+class Mageo::Vector3DInternal < Mageo::Vector3D
   class RangeError < Exception; end
   class TypeError < Exception; end
 
-  #要素数3以外では例外 Vector3DInternalSizeError を発生。
+  #要素数3以外では例外 Mageo::Vector3DInternalSizeError を発生。
   def self.[]( *args )
     raise RangeError unless args.size == 3
     super *args
@@ -36,7 +36,7 @@ class Vector3DInternal < Vector3D
     return self
   end
 
-  # Convert to Vector3D. Non-destructive.
+  # Convert to Mageo::Vector3D. Non-destructive.
   def to_v3d( axes )
     result = [ 0.0, 0.0, 0.0 ]
     3.times do |i|
@@ -44,7 +44,7 @@ class Vector3DInternal < Vector3D
         result[i] += ( self[j] * axes[j][i] )
       end
     end
-    Vector3D[ *result ]
+    Mageo::Vector3D[ *result ]
   end
 
   ## Return an array converted from self.
@@ -62,13 +62,13 @@ class Vector3DInternal < Vector3D
   # return true
   #end
 
-  #0〜2 以外の要素にアクセスしようとすると例外 Vector3DInternal::RangeError を発生。
+  #0〜2 以外の要素にアクセスしようとすると例外 Mageo::Vector3DInternal::RangeError を発生。
   def []( index )
     raise RangeError if ( index < 0 || 2 < index )
     super index
   end
 
-  #0〜2 以外の要素にアクセスしようとすると例外 Vector3DInternal::RangeError を発生。
+  #0〜2 以外の要素にアクセスしようとすると例外 Mageo::Vector3DInternal::RangeError を発生。
   def []=( index, val )
     raise RangeError if ( index < 0 || 2 < index )
     super index, val
@@ -76,11 +76,11 @@ class Vector3DInternal < Vector3D
 
   #ベクトルとしての加算
   def +(vec)
-    unless vec.class == Vector3DInternal
+    unless vec.class == Mageo::Vector3DInternal
       raise TypeError,
         "Argument: #{vec.inspect}, #{vec.class}."
     end
-    result = Vector3DInternal[0.0, 0.0, 0.0]
+    result = Mageo::Vector3DInternal[0.0, 0.0, 0.0]
     3.times do |i|
       result[ i ] = (self[ i ] + vec[ i ])
     end
@@ -89,11 +89,11 @@ class Vector3DInternal < Vector3D
 
   #ベクトルとしての減算
   def -( vec )
-    unless vec.class == Vector3DInternal
+    unless vec.class == Mageo::Vector3DInternal
       raise TypeError,
         "Argument: #{vec.inspect}, #{vec.class}."
     end
-    result = Vector3DInternal[0.0, 0.0, 0.0]
+    result = Mageo::Vector3DInternal[0.0, 0.0, 0.0]
     3.times do |i|
       result[ i ] = (self[ i ] - vec[ i ])
     end
@@ -102,7 +102,7 @@ class Vector3DInternal < Vector3D
 
   #ベクトルとしての乗算
   def *( val )
-    result = Vector3DInternal[0.0, 0.0, 0.0]
+    result = Mageo::Vector3DInternal[0.0, 0.0, 0.0]
     3.times do |i|
       result[ i ] = ( self[ i ] * val )
     end

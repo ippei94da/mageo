@@ -22,7 +22,7 @@ class TC_Vector < Test::Unit::TestCase
   end
 
   def test_unit_vector
-    assert_raise( Vector::ZeroOperation ){ Vector[0.0, 0.0, 0.0].unit_vector }
+    assert_raise( Vector::ZeroOperationError ){ Vector[0.0, 0.0, 0.0].unit_vector }
 
     assert_in_delta( 1.0/Math::sqrt(14.0), @v0.unit_vector[0], $tolerance )
     assert_in_delta( 2.0/Math::sqrt(14.0), @v0.unit_vector[1], $tolerance )
@@ -61,8 +61,8 @@ class TC_Vector < Test::Unit::TestCase
     assert_equal(2, tmp.size)
 
     # inherited class
-    tmp = Vector3D[1.1, 2.2, 3.3].floor
-    assert_equal(Vector3D, tmp.class)
+    tmp = Mageo::Vector3D[1.1, 2.2, 3.3].floor
+    assert_equal(Mageo::Vector3D, tmp.class)
     assert_equal(1, tmp[0])
     assert_equal(2, tmp[1])
     assert_equal(3, tmp[2])

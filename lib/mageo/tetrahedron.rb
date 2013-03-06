@@ -18,7 +18,7 @@ class Tetrahedron < Mageo::Polyhedron
       raise InitializeError unless vertex.methods.include?( :map )
     end
     vertices.each do |vertex|
-      raise InitializeError if vertex.class == Vector3DInternal
+      raise InitializeError if vertex.class == Mageo::Vector3DInternal
     end
 
     @vertices = vertices.map { |vertex| vertex.to_v3d }

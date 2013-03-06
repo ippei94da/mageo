@@ -15,13 +15,13 @@ end
 class TC_Octahedron < Test::Unit::TestCase
   $tolerance = 10**(-10)
 
-  V_X_PLUS  = Vector3D[  1,  0,  0 ]
-  V_Y_PLUS  = Vector3D[  0,  1,  0 ]
-  V_Z_PLUS  = Vector3D[  0,  0,  1 ]
+  V_X_PLUS  = Mageo::Vector3D[  1,  0,  0 ]
+  V_Y_PLUS  = Mageo::Vector3D[  0,  1,  0 ]
+  V_Z_PLUS  = Mageo::Vector3D[  0,  0,  1 ]
 
-  V_X_MINUS = Vector3D[ -1,  0,  0 ]
-  V_Y_MINUS = Vector3D[  0, -1,  0 ]
-  V_Z_MINUS = Vector3D[  0,  0, -1 ]
+  V_X_MINUS = Mageo::Vector3D[ -1,  0,  0 ]
+  V_Y_MINUS = Mageo::Vector3D[  0, -1,  0 ]
+  V_Z_MINUS = Mageo::Vector3D[  0,  0, -1 ]
 
   def setup
     @o00 = Mageo::Octahedron.new(
@@ -71,17 +71,17 @@ class TC_Octahedron < Test::Unit::TestCase
 
     assert_raise( Mageo::Octahedron::InitializeError ){
       Mageo::Octahedron.new(
-        [ [ Vector3DInternal[ -0.5,  0.5,  0.5 ], Vector3DInternal[  1.5,  0.5,  0.5 ] ],
-          [ Vector3DInternal[  0.5, -0.5,  0.5 ], Vector3DInternal[  0.5,  1.5,  0.5 ] ],
-          [ Vector3DInternal[  0.5,  0.5, -0.5 ], Vector3DInternal[  0.5,  0.5,  1.5 ] ] ]
+        [ [ Mageo::Vector3DInternal[ -0.5,  0.5,  0.5 ], Mageo::Vector3DInternal[  1.5,  0.5,  0.5 ] ],
+          [ Mageo::Vector3DInternal[  0.5, -0.5,  0.5 ], Mageo::Vector3DInternal[  0.5,  1.5,  0.5 ] ],
+          [ Mageo::Vector3DInternal[  0.5,  0.5, -0.5 ], Mageo::Vector3DInternal[  0.5,  0.5,  1.5 ] ] ]
       )
     }
 
     assert_nothing_raised{
       Mageo::Octahedron.new(
-        [ [ Vector3D[ -0.5,  0.5,  0.5 ], Vector3D[  1.5,  0.5,  0.5 ] ],
-          [ Vector3D[  0.5, -0.5,  0.5 ], Vector3D[  0.5,  1.5,  0.5 ] ],
-          [ Vector3D[  0.5,  0.5, -0.5 ], Vector3D[  0.5,  0.5,  1.5 ] ] ]
+        [ [ Mageo::Vector3D[ -0.5,  0.5,  0.5 ], Mageo::Vector3D[  1.5,  0.5,  0.5 ] ],
+          [ Mageo::Vector3D[  0.5, -0.5,  0.5 ], Mageo::Vector3D[  0.5,  1.5,  0.5 ] ],
+          [ Mageo::Vector3D[  0.5,  0.5, -0.5 ], Mageo::Vector3D[  0.5,  0.5,  1.5 ] ] ]
       )
     }
   end

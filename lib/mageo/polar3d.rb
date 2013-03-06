@@ -24,7 +24,7 @@ class Mageo::Polar3D
     x = @r * sin( @theta ) * cos( @phi )
     y = @r * sin( @theta ) * sin( @phi )
     z = @r * cos( @theta )
-    Vector3D[ x, y, z ]
+    Mageo::Vector3D[ x, y, z ]
   end
 
   #phi を 0 <= phi < 2*PI の間の角度に変換する破壊破壊的メソッド。

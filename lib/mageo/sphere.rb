@@ -8,7 +8,7 @@ class Mageo::Sphere
 
   # 座標と半径
   def initialize(position, radius)
-    @position = Vector3D[*position]
+    @position = Mageo::Vector3D[*position]
     @radius = radius
   end
 end

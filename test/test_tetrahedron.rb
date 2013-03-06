@@ -15,15 +15,15 @@ end
 class TC_Tetrahedron < Test::Unit::TestCase
   $tolerance = 10**(-10)
 
-  V_00 = Vector3D[ 0.0, 0.0, 0.0]
-  V_01 = Vector3D[10.0, 0.0, 0.0]
-  V_02 = Vector3D[ 0.0,10.0, 0.0]
-  V_03 = Vector3D[ 0.0, 0.0,10.0]
+  V_00 = Mageo::Vector3D[ 0.0, 0.0, 0.0]
+  V_01 = Mageo::Vector3D[10.0, 0.0, 0.0]
+  V_02 = Mageo::Vector3D[ 0.0,10.0, 0.0]
+  V_03 = Mageo::Vector3D[ 0.0, 0.0,10.0]
 
-  V_10 = Vector3D[10.0,20.0,30.0]
-  V_11 = Vector3D[ 0.0,20.0,30.0]
-  V_12 = Vector3D[10.0, 0.0,30.0]
-  V_13 = Vector3D[10.0,20.0, 0.0]
+  V_10 = Mageo::Vector3D[10.0,20.0,30.0]
+  V_11 = Mageo::Vector3D[ 0.0,20.0,30.0]
+  V_12 = Mageo::Vector3D[10.0, 0.0,30.0]
+  V_13 = Mageo::Vector3D[10.0,20.0, 0.0]
 
   def setup
     @t00 = Tetrahedron.new( [ V_00, V_01, V_02, V_03 ])
@@ -54,18 +54,18 @@ class TC_Tetrahedron < Test::Unit::TestCase
       Tetrahedron.new( [ V_00, V_01, V_02, [ 2.0, 2.0, 0.0] ])
     }
 
-    # Vector3DInternal なら 例外
+    # Mageo::Vector3DInternal なら 例外
     assert_raise( Tetrahedron::InitializeError ){
       Tetrahedron.new( 
-        [ Vector3DInternal[ 0.0, 0.0, 0.0],
-          Vector3DInternal[ 1.0, 0.0, 0.0],
-          Vector3DInternal[ 0.0, 1.0, 0.0],
-          Vector3DInternal[ 0.0, 0.0, 1.0]
+        [ Mageo::Vector3DInternal[ 0.0, 0.0, 0.0],
+          Mageo::Vector3DInternal[ 1.0, 0.0, 0.0],
+          Mageo::Vector3DInternal[ 0.0, 1.0, 0.0],
+          Mageo::Vector3DInternal[ 0.0, 0.0, 1.0]
         ]
       )
     }
   
-    # Vector3D なら OK
+    # Mageo::Vector3D なら OK
     assert_nothing_raised{
       Tetrahedron.new( [ V_00, V_01, V_02, V_03 ])
     }
@@ -77,8 +77,8 @@ class TC_Tetrahedron < Test::Unit::TestCase
     assert_equal( false, @t00.inside?( [-5.0,-5.0,-5.0] ) )
     assert_equal( false, @t00.inside?( [ 0.0, 0.0, 0.0] ) ) #頂点上
 
-    assert_raise(Mageo::Polyhedron::TypeError){@t00.inside?(Vector3DInternal[1.0, 1.0, 1.0])}
-    assert_raise(Tetrahedron::TypeError){@t00.inside?(Vector3DInternal[1.0, 1.0, 1.0])}
+    assert_raise(Mageo::Polyhedron::TypeError){@t00.inside?(Mageo::Vector3DInternal[1.0, 1.0, 1.0])}
+    assert_raise(Tetrahedron::TypeError){@t00.inside?(Mageo::Vector3DInternal[1.0, 1.0, 1.0])}
     #pp Mageo::Polyhedron::TypeError.ancestors
     #pp Tetrahedron::TypeError.ancestors
   end
@@ -89,9 +89,9 @@ class TC_Tetrahedron < Test::Unit::TestCase
     assert_equal( false, @t00.include?([-5.0,-5.0,-5.0], $tolerance))
     assert_equal( true , @t00.include?([ 0.0, 0.0, 0.0], $tolerance)) #頂点上
 
-    assert_equal( false, @t01.include?(Vector3D[ 3.0, 6.0, 30.0], $tolerance))
+    assert_equal( false, @t01.include?(Mageo::Vector3D[ 3.0, 6.0, 30.0], $tolerance))
 
-    assert_raise(Mageo::Polyhedron::TypeError){@t00.include?(Vector3DInternal[1.0, 1.0, 1.0], $tolerance)}
+    assert_raise(Mageo::Polyhedron::TypeError){@t00.include?(Mageo::Vector3DInternal[1.0, 1.0, 1.0], $tolerance)}
   end
 
   def test_volume

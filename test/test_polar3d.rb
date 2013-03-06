@@ -20,22 +20,22 @@ class TC_Polar3D < Test::Unit::TestCase
   end
 
   def test_to_v3d
-    assert_equal( Vector3D, @p3d00.to_v3d.class )
+    assert_equal( Mageo::Vector3D, @p3d00.to_v3d.class )
     assert_in_delta( 0.0, @p3d00.to_v3d[0], $tolerance )
     assert_in_delta( 0.0, @p3d00.to_v3d[1], $tolerance )
     assert_in_delta( 0.0, @p3d00.to_v3d[2], $tolerance )
 
-    assert_equal( Vector3D, @p3d01.to_v3d.class )
+    assert_equal( Mageo::Vector3D, @p3d01.to_v3d.class )
     assert_in_delta( 0.0, @p3d01.to_v3d[0], $tolerance )
     assert_in_delta( 0.0, @p3d01.to_v3d[1], $tolerance )
     assert_in_delta( 2.0, @p3d01.to_v3d[2], $tolerance )
 
-    assert_equal( Vector3D, @p3d02.to_v3d.class )
+    assert_equal( Mageo::Vector3D, @p3d02.to_v3d.class )
     assert_in_delta( Math::sqrt(2.0), @p3d02.to_v3d[0], $tolerance )
     assert_in_delta( 0.0            , @p3d02.to_v3d[1], $tolerance )
     assert_in_delta( Math::sqrt(2.0), @p3d02.to_v3d[2], $tolerance )
 
-    assert_equal( Vector3D, @p3d03.to_v3d.class )
+    assert_equal( Mageo::Vector3D, @p3d03.to_v3d.class )
     #√2 * cos(0.25PI)
     assert_in_delta( 1.0 , @p3d03.to_v3d[0], $tolerance)
     assert_in_delta( 1.0 , @p3d03.to_v3d[1], $tolerance)

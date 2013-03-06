@@ -45,7 +45,7 @@ class Mageo::Polyhedron
 
   #面で囲まれた空間の中にあれば true を返す。
   def inside?( pos )
-    raise TypeError if pos.class == Vector3DInternal
+    raise TypeError if pos.class == Mageo::Vector3DInternal
 
     result = true
     triangles.each do |triangle|
@@ -55,7 +55,7 @@ class Mageo::Polyhedron
   end
 
   def include?(pos, tolerance)
-    raise TypeError if pos.class == Vector3DInternal
+    raise TypeError if pos.class == Mageo::Vector3DInternal
 
     return true if inside?( pos )
     triangles.each do |triangle|
@@ -71,7 +71,7 @@ class Mageo::Polyhedron
     result = 0.0
     @vertex_indices_of_triangles.each do |tri_vertices|
       vectors =  tri_vertices.map { |i| @vertices[i] - center }
-      volume = Vector3D.scalar_triple_product( *vectors ).abs
+      volume = Mageo::Vector3D.scalar_triple_product( *vectors ).abs
       volume /= 6.0
       result += volume
     end
@@ -80,7 +80,7 @@ class Mageo::Polyhedron
 
   #各頂点の座標の平均値を返す。
   def center
-    tmp = Vector3D[ 0.0, 0.0, 0.0 ]
+    tmp = Mageo::Vector3D[ 0.0, 0.0, 0.0 ]
     @vertices.each do |vertex|
       tmp += vertex
     end

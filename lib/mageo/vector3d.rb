@@ -8,18 +8,18 @@ require "malge.rb"
 
 # Open class to add "to_v3d" method.
 class Array
-  # Convert Array to Vector3D
+  # Convert Array to Mageo::Vector3D
   def to_v3d
-    Vector3D[*self]
-    #要素数チェックは Vector3D.[] 側でやっている。
+    Mageo::Vector3D[*self]
+    #要素数チェックは Mageo::Vector3D.[] 側でやっている。
   end
 end
 
 class Vector
-  # Return a new instance converted to Vector3D class.
+  # Return a new instance converted to Mageo::Vector3D class.
   def to_v3d
-    Vector3D[*self]
-    #要素数チェックは Vector3D.[] 側でやっている。
+    Mageo::Vector3D[*self]
+    #要素数チェックは Mageo::Vector3D.[] 側でやっている。
   end
 end
 
@@ -28,16 +28,16 @@ end
 # This class provide exterior_product method and others, which is not included
 # in native Vector class.
 # This class is constructed under the assumption in the Cartesian coordinate.
-# If you want to be in an internal coordinate, you can use Math/Vector3DInternal.rb .
+# If you want to be in an internal coordinate, you can use Math/Mageo::Vector3DInternal.rb .
 # 
 # Memo:
-#   Vector3DInternal との対比として、Vector3DCartesian という名前にすることも考えたが、
+#   Mageo::Vector3DInternal との対比として、Vector3DCartesian という名前にすることも考えたが、
 #   長くなるし、普通直交座標で考えるよね、と。
 # 
 #   インスタンス生成の時点で要素数をチェックし、要素の追加削除を禁止しているので
 #   要素数は常に3であることが保証されている。
 # 
-class Vector3D < Vector
+class Mageo::Vector3D < Vector
 
   class TypeError < Exception; end
   class ZeroOperation < Exception; end
@@ -53,7 +53,7 @@ class Vector3D < Vector
   # Get the exterior product.
   def self.exterior_product(vec0, vec1)
     [vec0, vec1].each_with_index do |vec, index|
-      unless (vec.class == Vector3D)
+      unless (vec.class == Mageo::Vector3D)
         raise TypeError, "Vector #{index}, #{vec.inspect}."
       end
     end
@@ -76,7 +76,7 @@ class Vector3D < Vector
   # Get the scalar triple product.
   def self.scalar_triple_product(vec0, vec1, vec2)
     [vec0, vec1, vec2].each_with_index do |vec, index|
-      raise TypeError, "#{index}th vector: #{vec.inspect}" unless (vec.class == Vector3D)
+      raise TypeError, "#{index}th vector: #{vec.inspect}" unless (vec.class == Mageo::Vector3D)
     end
 
     vec0.inner_product(vec1.exterior_product(vec2))
@@ -85,7 +85,7 @@ class Vector3D < Vector
   # Get the angle with radian between self and other vectors.
   def self.angle_radian(vec0, vec1)
     [vec0, vec1].each_with_index do |vec, index|
-      raise TypeError, "#{index}th vector: #{vec.inspect}" unless (vec.class == Vector3D)
+      raise TypeError, "#{index}th vector: #{vec.inspect}" unless (vec.class == Mageo::Vector3D)
       raise ZeroOperation, "#{index}th vector: #{vec.inspect}" if (vec.r == 0.0)
     end
 
@@ -95,7 +95,7 @@ class Vector3D < Vector
   # Get the angle with degree between self and other vectors.
   def self.angle_degree(vec0, vec1)
     [vec0, vec1].each_with_index do |vec, index|
-      raise TypeError, "#{index}th vector: #{vec.inspect}" unless (vec.class == Vector3D)
+      raise TypeError, "#{index}th vector: #{vec.inspect}" unless (vec.class == Mageo::Vector3D)
       raise ZeroOperation, "#{index}th vector: #{vec.inspect}" if (vec.r == 0.0)
     end
 
@@ -116,33 +116,33 @@ class Vector3D < Vector
   
   
   # ベクトルが等しいかチェック。
-  # other として Vector3D クラス以外のインスタンス渡すと Vector3D::TypeError。
+  # other として Mageo::Vector3D クラス以外のインスタンス渡すと Vector3D::TypeError。
   # 両者の差分ベクトルの長さが tolerance 以下という判定になる。
   def equal_in_delta?(other, tolerance = 0.0)
-    raise TypeError if (other.class != Vector3D)
+    raise TypeError if (other.class != Mageo::Vector3D)
     return (other - self).r <= tolerance
   end
 
   # Vectorクラスで用意されているメソッドは Vectorクラスインスタンスを返すようになっているので、
-  # Vector3D クラスインスタンスを返すようにした + メソッド。
+  # Mageo::Vector3D クラスインスタンスを返すようにした + メソッド。
   def +(vec)
-    unless (vec.class == Vector3D)
+    unless (vec.class == Mageo::Vector3D)
       raise TypeError, "#{vec.inspect}."
     end
     super(vec).to_v3d
   end
 
   # Vectorクラスで用意されているメソッドは Vectorクラスインスタンスを返すようになっているので、
-  # Vector3D クラスインスタンスを返すようにした - メソッド。
+  # Mageo::Vector3D クラスインスタンスを返すようにした - メソッド。
   def -(vec)
-    unless (vec.class == Vector3D)
+    unless (vec.class == Mageo::Vector3D)
       raise TypeError, "#{vec.inspect}."
     end
     super(vec).to_v3d
   end
 
   # Vectorクラスで用意されているメソッドは Vectorクラスインスタンスを返すようになっているので、
-  # Vector3D クラスインスタンスを返すようにした * メソッド。
+  # Mageo::Vector3D クラスインスタンスを返すようにした * メソッド。
   # Argument 'val' must have :to_f method.
   def *(val)
     #raise TypeError if (val.class != Float)
@@ -151,18 +151,18 @@ class Vector3D < Vector
   end
 
   # Vectorクラスで用意されているメソッドは Vectorクラスインスタンスを返すようになっているので、
-  # Vector3D クラスインスタンスを返すようにした clone メソッド。
+  # Mageo::Vector3D クラスインスタンスを返すようにした clone メソッド。
   def clone
     super().to_v3d
   end
 
-  # Convert to Vector3DInternal. Non-destructive.
+  # Convert to Mageo::Vector3DInternal. Non-destructive.
   def to_v3di(axes)
     #pp axes.is_a?(Mageo::Axes)
     raise TypeError unless axes.is_a?(Mageo::Axes)
 
     axes = axes.to_a
-    Vector3DInternal[ *(Malge::SimultaneousEquations.cramer(axes.transpose, self)) ]
+    Mageo::Vector3DInternal[ *(Malge::SimultaneousEquations.cramer(axes.transpose, self)) ]
   end
 
   #Return size, always 3.

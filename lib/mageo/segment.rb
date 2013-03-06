@@ -11,8 +11,8 @@ class Mageo::Segment
   
   # 端点を2つ渡す。
   def initialize(vector0, vector1)
-    raise InitializeError if vector0.class != Vector3D
-    raise InitializeError if vector1.class != Vector3D
+    raise InitializeError if vector0.class != Mageo::Vector3D
+    raise InitializeError if vector1.class != Mageo::Vector3D
     raise InitializeError if vector0 == vector1
     
     @endpoints = [vector0, vector1]
@@ -20,9 +20,9 @@ class Mageo::Segment
 
   # position で与えられた点が線分の中にある点か？
   # tolerance = 0.0 では計算誤差のためにほとんど真とならない。
-  # position は Vector3D クラスインスタンスでなければならない。
+  # position は Mageo::Vector3D クラスインスタンスでなければならない。
   def include?(position, tolerance)
-    raise TypeError if position.class != Vector3D
+    raise TypeError if position.class != Mageo::Vector3D
 
     vec_self = @endpoints[1] - @endpoints[0]
     vec_other = position - @endpoints[0]
@@ -54,7 +54,7 @@ class Mageo::Segment
   end
 
   # endpoints で取り出せる座標2つのうち、最初のものから最後のものへのベクトルを表す
-  # Vector3D クラスインスタンスを返す。
+  # Mageo::Vector3D クラスインスタンスを返す。
   def to_v3d
     return @endpoints[1] - @endpoints[0]
   end

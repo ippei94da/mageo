@@ -3,7 +3,7 @@
 
 #3次元空間中の3角形を表現するクラス。
 #
-#法線ベクトル( Vector3D クラスインスタンス )を返すメソッドは定義しない。
+#法線ベクトル( Mageo::Vector3D クラスインスタンス )を返すメソッドは定義しない。
 #  法線ベクトルは2通りの方向を取りうるため。
 #  initialize 時に点の指定の順序を決めることで定義はできるが、
 #  そうすると簡潔性が損なわれる。
@@ -17,7 +17,7 @@ class Mageo::Triangle
   class NoIntersectionError < Exception; end
 
   #An argument 'vertices' can be Array of 3 items, Vector of 3 items,
-  # or Vector3D class instance, which have [] and map methods.
+  # or Mageo::Vector3D class instance, which have [] and map methods.
   #当面は Array を前提とする。
   #座標が整数で入っていたとしても内部的には Float に変換して使用する。
   #3点が1直線上に並んでいて三角形を囲まない場合は
@@ -37,7 +37,7 @@ class Mageo::Triangle
     #Checking on linear.
     edge1 = @vertices[1] - @vertices[0]
     edge2 = @vertices[2] - @vertices[0]
-    if ( Vector3D[0.0, 0.0, 0.0] == Vector3D.vector_product( edge1, edge2 ))
+    if ( Mageo::Vector3D[0.0, 0.0, 0.0] == Mageo::Vector3D.vector_product( edge1, edge2 ))
       raise LinearException
     end
 
@@ -46,16 +46,16 @@ class Mageo::Triangle
   #引数で与えられた 2 つの座標が、三角形の面に対して同じ側にあれば true を返す。
   #どちらか、もしくは両方が、面上の点(当然頂点、辺上を含む)であれば必ず false を返す。
   def same_side?( pos0, pos1 )
-    raise TypeError if pos0.class != Vector3D
-    raise TypeError if pos1.class != Vector3D
+    raise TypeError if pos0.class != Mageo::Vector3D
+    raise TypeError if pos1.class != Mageo::Vector3D
 
     edge1 = @vertices[1] - @vertices[0]
     edge2 = @vertices[2] - @vertices[0]
     pos0  = pos0.to_v3d - @vertices[0]
     pos1  = pos1.to_v3d - @vertices[0]
 
-    triple_product_pos0 = Vector3D.scalar_triple_product( edge1, edge2, pos0 )
-    triple_product_pos1 = Vector3D.scalar_triple_product( edge1, edge2, pos1 )
+    triple_product_pos0 = Mageo::Vector3D.scalar_triple_product( edge1, edge2, pos0 )
+    triple_product_pos1 = Mageo::Vector3D.scalar_triple_product( edge1, edge2, pos1 )
     if triple_product_pos0 * triple_product_pos1 > 0
       return true
     else
@@ -64,11 +64,11 @@ class Mageo::Triangle
   end
 
   # 3点で張られる面上にあり、三角形の内側にあれば true を返す。
-  # pos が Vector3D クラスインスタンスでなければ例外。
+  # pos が Mageo::Vector3D クラスインスタンスでなければ例外。
   # ただし、面の法線方向には tolerance だけの許容値を設ける。
   # 計算誤差の問題のため、これを設定しないと殆ど真とならない。
   def include?(pos, tolerance)
-    raise TypeError if pos.class != Vector3D
+    raise TypeError if pos.class != Mageo::Vector3D
 
     axes = internal_axes
     #一次独立チェックは initialize 時にされている筈。

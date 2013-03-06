@@ -30,7 +30,7 @@ class Mageo::Octahedron < Mageo::Polyhedron
     end
 
     pairs.flatten.each do |vertex|
-      raise InitializeError if vertex.class == Vector3DInternal
+      raise InitializeError if vertex.class == Mageo::Vector3DInternal
     end
 
 
