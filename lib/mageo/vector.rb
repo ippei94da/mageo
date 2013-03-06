@@ -1,6 +1,7 @@
 #! /usr/bin/ruby
 
-require "matrix"
+#require "mageo.rb"
+#require "matrix"
 
 class Vector
   #include Math

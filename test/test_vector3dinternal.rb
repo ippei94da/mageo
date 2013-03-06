@@ -2,8 +2,9 @@
 
 require 'test/unit'
 require 'matrix'
-require 'mageo/vector3d.rb'
-require 'mageo/vector3dinternal.rb'
+require 'mageo.rb'
+#require 'mageo/vector3d.rb'
+#require 'mageo/vector3dinternal.rb'
 
 class TC_Array < Test::Unit::TestCase
   $tolerance = 10.0**(-10)

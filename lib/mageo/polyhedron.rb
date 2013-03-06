@@ -1,25 +1,26 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "rubygems"
-gem "builtinextension"
-require "array_include_eql.rb"
+#require "mageo.rb"
+#require "rubygems"
+#gem "builtinextension"
+#require "array_include_eql.rb"
 
 # 多面体を表現する抽象クラス。
 # 面は必ず三角形で、たとえば四角形も2つの三角形であると考える。
 # initialize メソッドは subclass で再定義する。
 # subclass の注意点。
 #   - 凸包であることを前提とする。
-#     チェック機構は Polyhedron クラスで持っているべきだが、面倒なので後回し。
+#     チェック機構は Mageo::Polyhedron クラスで持っているべきだが、面倒なので後回し。
 #     3次元凸包判定の方法をぐぐったが、これといったものが見つからない。
 #   - 定義された面同士の間に隙間がないことを前提とする。
-#     チェック機構は Polyhedron クラスで持っているべきだが、面倒なので後回し。
+#     チェック機構は Mageo::Polyhedron クラスで持っているべきだが、面倒なので後回し。
 #   - 頂点リスト @vertices と、面リスト @vertex_indices_of_triangles を持つ。
-#     ただし、@vertex_indices_of_triangles は Triangle クラスインスタンスではなく、
+#     ただし、@vertex_indices_of_triangles は Mageo::Triangle クラスインスタンスではなく、
 #     @vertices 内の index。
 #     see Tetrahedron.rb
 #   - メインのテストは 四面体 Tetrahedron クラスで行っている。
-class Polyhedron
+class Mageo::Polyhedron
   attr_reader :vertices
 
   class TypeError < Exception; end
@@ -42,7 +43,7 @@ class Polyhedron
 
   def triangles
     results = @vertex_indices_of_triangles.map do |indices|
-      Triangle.new( indices.map{|i| @vertices[i] } )
+      Mageo::Triangle.new( indices.map{|i| @vertices[i] } )
     end
     return results
   end

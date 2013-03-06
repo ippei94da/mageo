@@ -1,10 +1,11 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "mageo/vector3d.rb"
-require "mageo/vector3dinternal.rb"
-require "mageo/axes.rb"
-require "mageo/segment.rb"
+#require "mageo.rb"
+#require "mageo/vector3d.rb"
+#require "mageo/vector3dinternal.rb"
+#require "mageo/axes.rb"
+#require "mageo/segment.rb"
 
 #3次元空間中の3角形を表現するクラス。
 #
@@ -12,7 +13,7 @@ require "mageo/segment.rb"
 #  法線ベクトルは2通りの方向を取りうるため。
 #  initialize 時に点の指定の順序を決めることで定義はできるが、
 #  そうすると簡潔性が損なわれる。
-class Triangle
+class Mageo::Triangle
   attr_reader :vertices
 
   class InitializeError < Exception; end
@@ -26,7 +27,7 @@ class Triangle
   #当面は Array を前提とする。
   #座標が整数で入っていたとしても内部的には Float に変換して使用する。
   #3点が1直線上に並んでいて三角形を囲まない場合は
-  #例外 Triangle::LinearException を投げる。
+  #例外 Mageo::Triangle::LinearException を投げる。
   def initialize( vertices )
     raise InitializeError unless vertices.methods.include?( :size )
     raise InitializeError if vertices.size != 3
@@ -167,7 +168,7 @@ class Triangle
   end
 
   # 3つの頂点の座標が順不同で対応すれば真を返す。
-  # other が Triangle クラス以外のインスタンスなら例外 Triangle::TypeError を投げる。
+  # other が Mageo::Triangle クラス以外のインスタンスなら例外 Triangle::TypeError を投げる。
   # MEMO:
   # 当初 eql? という名前を付けていたが、
   # これは hash メソッドと関連があるので危険。
@@ -175,7 +176,7 @@ class Triangle
   # しかし eql? に依存したコードが残っているので当面 alias を残す。
   # そのうち obsolete する。
   def equivalent?(other, tolerance = 0.0)
-    raise TypeError unless other.class == Triangle
+    raise TypeError unless other.class == Mageo::Triangle
 
     vertices.each do |v_self|
       if (other.vertices.find{|v_other| v_self.equal_in_delta?(v_other, tolerance) })
@@ -204,21 +205,21 @@ class Triangle
 
   def edges
     results = []
-    results << Segment.new(@vertices[0], @vertices[1])
-    results << Segment.new(@vertices[1], @vertices[2])
-    results << Segment.new(@vertices[2], @vertices[0])
+    results << Mageo::Segment.new(@vertices[0], @vertices[1])
+    results << Mageo::Segment.new(@vertices[1], @vertices[2])
+    results << Mageo::Segment.new(@vertices[2], @vertices[0])
     return results
   end
 
   private
 
   # 三角形の2辺のベクトルと、これらからなる外積ベクトル、
-  # 合計3つのベクトルから Axes クラスインスタンスを作る。
+  # 合計3つのベクトルから Mageo::Axes クラスインスタンスを作る。
   # vertices で取り出せる3頂点のうち、0th 要素を原点とし、
   # 1st, 2nd 要素をそれぞれ順に軸としたものとする。
   def internal_axes
     edge1 = (@vertices[1] - @vertices[0])
     edge2 = (@vertices[2] - @vertices[0])
-    return Axes.new([edge1, edge2, normal_vector])
+    return Mageo::Axes.new([edge1, edge2, normal_vector])
   end
 end

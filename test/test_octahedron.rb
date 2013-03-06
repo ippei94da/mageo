@@ -3,11 +3,12 @@
 
 require "test/unit"
 require "helper"
-require "mageo/octahedron.rb"
+require 'mageo.rb'
+#require "mageo/octahedron.rb"
 gem "builtinextension"
   require "array_include_eql.rb"
 
-class Octahedron
+class Mageo::Octahedron
   public :center
 end
 
@@ -23,12 +24,12 @@ class TC_Octahedron < Test::Unit::TestCase
   V_Z_MINUS = Vector3D[  0,  0, -1 ]
 
   def setup
-    @o00 = Octahedron.new(
+    @o00 = Mageo::Octahedron.new(
       [ [V_X_MINUS, V_X_PLUS ],
         [V_Y_MINUS, V_Y_PLUS ],
         [V_Z_MINUS, V_Z_PLUS ] ]
     )
-    @o01 = Octahedron.new(
+    @o01 = Mageo::Octahedron.new(
       [ [ [ -0.5,  0.5,  0.5 ], [  1.5,  0.5,  0.5 ] ],
         [ [  0.5, -0.5,  0.5 ], [  0.5,  1.5,  0.5 ] ],
         [ [  0.5,  0.5, -0.5 ], [  0.5,  0.5,  1.5 ] ] ]
@@ -36,30 +37,30 @@ class TC_Octahedron < Test::Unit::TestCase
   end
 
   def test_initialize
-    assert_raise( ArgumentError ){ Octahedron.new }
-    assert_raise( ArgumentError ){ Octahedron.new() }
-    assert_raise( Octahedron::InitializeError ){ Octahedron.new( nil ) }
-    assert_raise( Octahedron::InitializeError ){ Octahedron.new( [] ) }
-    assert_raise( Octahedron::InitializeError ){ Octahedron.new( [ 0, 1, 2 ] ) }
-    assert_raise( Octahedron::InitializeError ){ Octahedron.new( [ [], [], [] ] ) }
-    assert_raise( Octahedron::InitializeError ){
-      Octahedron.new( 
+    assert_raise( ArgumentError ){ Mageo::Octahedron.new }
+    assert_raise( ArgumentError ){ Mageo::Octahedron.new() }
+    assert_raise( Mageo::Octahedron::InitializeError ){ Mageo::Octahedron.new( nil ) }
+    assert_raise( Mageo::Octahedron::InitializeError ){ Mageo::Octahedron.new( [] ) }
+    assert_raise( Mageo::Octahedron::InitializeError ){ Mageo::Octahedron.new( [ 0, 1, 2 ] ) }
+    assert_raise( Mageo::Octahedron::InitializeError ){ Mageo::Octahedron.new( [ [], [], [] ] ) }
+    assert_raise( Mageo::Octahedron::InitializeError ){
+      Mageo::Octahedron.new( 
         [ [ V_X_MINUS, V_X_PLUS ],
           [ V_Y_MINUS, V_Y_PLUS ],
           [ V_Z_MINUS, [  0,  0 ] ]
         ]
       )
     }
-    assert_raise( Octahedron::InitializeError ){
-      Octahedron.new( 
+    assert_raise( Mageo::Octahedron::InitializeError ){
+      Mageo::Octahedron.new( 
         [ [ V_X_MINUS, V_X_PLUS],
           [ V_Y_MINUS, [  0,  1,  0, 2 ] ],
           [ V_Z_MINUS, V_Z_PLUS ]
         ]
       )
     }
-    assert_raise( Octahedron::InitializeError ){
-      Octahedron.new( 
+    assert_raise( Mageo::Octahedron::InitializeError ){
+      Mageo::Octahedron.new( 
         [ [ V_X_MINUS, V_X_PLUS ],
           [ V_Y_MINUS, V_Y_PLUS ],
           [ V_Z_MINUS, V_Z_PLUS ],
@@ -68,8 +69,8 @@ class TC_Octahedron < Test::Unit::TestCase
       )
     }
 
-    assert_raise( Octahedron::InitializeError ){
-      Octahedron.new(
+    assert_raise( Mageo::Octahedron::InitializeError ){
+      Mageo::Octahedron.new(
         [ [ Vector3DInternal[ -0.5,  0.5,  0.5 ], Vector3DInternal[  1.5,  0.5,  0.5 ] ],
           [ Vector3DInternal[  0.5, -0.5,  0.5 ], Vector3DInternal[  0.5,  1.5,  0.5 ] ],
           [ Vector3DInternal[  0.5,  0.5, -0.5 ], Vector3DInternal[  0.5,  0.5,  1.5 ] ] ]
@@ -77,7 +78,7 @@ class TC_Octahedron < Test::Unit::TestCase
     }
 
     assert_nothing_raised{
-      Octahedron.new(
+      Mageo::Octahedron.new(
         [ [ Vector3D[ -0.5,  0.5,  0.5 ], Vector3D[  1.5,  0.5,  0.5 ] ],
           [ Vector3D[  0.5, -0.5,  0.5 ], Vector3D[  0.5,  1.5,  0.5 ] ],
           [ Vector3D[  0.5,  0.5, -0.5 ], Vector3D[  0.5,  0.5,  1.5 ] ] ]
@@ -125,31 +126,31 @@ class TC_Octahedron < Test::Unit::TestCase
   def test_triangles
     t = @o00.triangles
     assert_equal(8, t.size)
-    assert_equal(true, t.include_eql?(Triangle.new([V_X_PLUS, V_Y_PLUS, V_Z_PLUS])))
-    assert_equal(true, t.include_eql?(Triangle.new([V_X_PLUS, V_Y_PLUS, V_Z_MINUS])))
-    assert_equal(true, t.include_eql?(Triangle.new([V_X_PLUS, V_Y_MINUS, V_Z_PLUS])))
-    assert_equal(true, t.include_eql?(Triangle.new([V_X_PLUS, V_Y_MINUS, V_Z_MINUS])))
-    assert_equal(true, t.include_eql?(Triangle.new([V_X_MINUS, V_Y_PLUS, V_Z_PLUS])))
-    assert_equal(true, t.include_eql?(Triangle.new([V_X_MINUS, V_Y_PLUS, V_Z_MINUS])))
-    assert_equal(true, t.include_eql?(Triangle.new([V_X_MINUS, V_Y_MINUS, V_Z_PLUS])))
-    assert_equal(true, t.include_eql?(Triangle.new([V_X_MINUS, V_Y_MINUS, V_Z_MINUS])))
+    assert_equal(true, t.include_eql?(Mageo::Triangle.new([V_X_PLUS, V_Y_PLUS, V_Z_PLUS])))
+    assert_equal(true, t.include_eql?(Mageo::Triangle.new([V_X_PLUS, V_Y_PLUS, V_Z_MINUS])))
+    assert_equal(true, t.include_eql?(Mageo::Triangle.new([V_X_PLUS, V_Y_MINUS, V_Z_PLUS])))
+    assert_equal(true, t.include_eql?(Mageo::Triangle.new([V_X_PLUS, V_Y_MINUS, V_Z_MINUS])))
+    assert_equal(true, t.include_eql?(Mageo::Triangle.new([V_X_MINUS, V_Y_PLUS, V_Z_PLUS])))
+    assert_equal(true, t.include_eql?(Mageo::Triangle.new([V_X_MINUS, V_Y_PLUS, V_Z_MINUS])))
+    assert_equal(true, t.include_eql?(Mageo::Triangle.new([V_X_MINUS, V_Y_MINUS, V_Z_PLUS])))
+    assert_equal(true, t.include_eql?(Mageo::Triangle.new([V_X_MINUS, V_Y_MINUS, V_Z_MINUS])))
   end
 
   def test_edges
     t = @o00.edges
     assert_equal(12, t.size)
-    assert_equal(true, (t.include_eql?(Segment.new(V_X_PLUS , V_Y_PLUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_X_PLUS , V_Y_MINUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_X_PLUS , V_Z_PLUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_X_PLUS , V_Z_MINUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_X_MINUS, V_Y_PLUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_X_MINUS, V_Y_MINUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_X_MINUS, V_Z_PLUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_X_MINUS, V_Z_MINUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_Y_PLUS , V_Z_PLUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_Y_PLUS , V_Z_MINUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_Y_MINUS, V_Z_PLUS))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_Y_MINUS, V_Z_MINUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_X_PLUS , V_Y_PLUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_X_PLUS , V_Y_MINUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_X_PLUS , V_Z_PLUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_X_PLUS , V_Z_MINUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_X_MINUS, V_Y_PLUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_X_MINUS, V_Y_MINUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_X_MINUS, V_Z_PLUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_X_MINUS, V_Z_MINUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_Y_PLUS , V_Z_PLUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_Y_PLUS , V_Z_MINUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_Y_MINUS, V_Z_PLUS))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_Y_MINUS, V_Z_MINUS))))
   end
 end
 

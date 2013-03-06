@@ -5,7 +5,8 @@ require "test/unit"
 require "rubygems"
 gem "builtinextension"
 require "array_include_eql.rb"
-require "mageo/tetrahedron.rb"
+require 'mageo.rb'
+#require "mageo/tetrahedron.rb"
 
 class Tetrahedron
   public :center
@@ -76,9 +77,9 @@ class TC_Tetrahedron < Test::Unit::TestCase
     assert_equal( false, @t00.inside?( [-5.0,-5.0,-5.0] ) )
     assert_equal( false, @t00.inside?( [ 0.0, 0.0, 0.0] ) ) #頂点上
 
-    assert_raise(Polyhedron::TypeError){@t00.inside?(Vector3DInternal[1.0, 1.0, 1.0])}
+    assert_raise(Mageo::Polyhedron::TypeError){@t00.inside?(Vector3DInternal[1.0, 1.0, 1.0])}
     assert_raise(Tetrahedron::TypeError){@t00.inside?(Vector3DInternal[1.0, 1.0, 1.0])}
-    #pp Polyhedron::TypeError.ancestors
+    #pp Mageo::Polyhedron::TypeError.ancestors
     #pp Tetrahedron::TypeError.ancestors
   end
 
@@ -90,7 +91,7 @@ class TC_Tetrahedron < Test::Unit::TestCase
 
     assert_equal( false, @t01.include?(Vector3D[ 3.0, 6.0, 30.0], $tolerance))
 
-    assert_raise(Polyhedron::TypeError){@t00.include?(Vector3DInternal[1.0, 1.0, 1.0], $tolerance)}
+    assert_raise(Mageo::Polyhedron::TypeError){@t00.include?(Vector3DInternal[1.0, 1.0, 1.0], $tolerance)}
   end
 
   def test_volume
@@ -110,21 +111,21 @@ class TC_Tetrahedron < Test::Unit::TestCase
   def test_triangles
     t = @t00.triangles
     assert_equal(4, t.size)
-    assert_equal(Triangle.new([V_00, V_01, V_02]) ,t[0])
-    assert_equal(Triangle.new([V_01, V_02, V_03]) ,t[1])
-    assert_equal(Triangle.new([V_02, V_03, V_00]) ,t[2])
-    assert_equal(Triangle.new([V_03, V_00, V_01]) ,t[3])
+    assert_equal(Mageo::Triangle.new([V_00, V_01, V_02]) ,t[0])
+    assert_equal(Mageo::Triangle.new([V_01, V_02, V_03]) ,t[1])
+    assert_equal(Mageo::Triangle.new([V_02, V_03, V_00]) ,t[2])
+    assert_equal(Mageo::Triangle.new([V_03, V_00, V_01]) ,t[3])
   end
 
   def test_edges
     t = @t00.edges
     assert_equal(6, t.size)
-    assert_equal(true, (t.include_eql?(Segment.new(V_00, V_01))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_00, V_02))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_00, V_03))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_01, V_02))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_01, V_03))))
-    assert_equal(true, (t.include_eql?(Segment.new(V_02, V_03))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_00, V_01))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_00, V_02))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_00, V_03))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_01, V_02))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_01, V_03))))
+    assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_02, V_03))))
   end
 end
 

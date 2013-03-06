@@ -3,7 +3,8 @@
 
 require "test/unit"
 require "helper"
-require "mageo/segment.rb"
+require 'mageo.rb'
+#require "mageo/segment.rb"
 
 class TC_Segment < Test::Unit::TestCase
   $tolerance = 1.0 * 10.0 ** (-10)
@@ -17,19 +18,19 @@ class TC_Segment < Test::Unit::TestCase
   VEC_20 = Vector3D[1.0, 1.0, 1.0]
   VEC_21 = Vector3D[0.0, 0.0, 0.0]
   def setup
-    @s00 = Segment.new(VEC_00, VEC_01)
-    @s01 = Segment.new(VEC_10, VEC_11)
-    @s02 = Segment.new(VEC_20, VEC_21)
+    @s00 = Mageo::Segment.new(VEC_00, VEC_01)
+    @s01 = Mageo::Segment.new(VEC_10, VEC_11)
+    @s02 = Mageo::Segment.new(VEC_20, VEC_21)
   end
 
   def test_initialize
     vec00 = [1.0, 2.0, 3.0]
     vec01 = [4.0, 6.0, 8.0]
-    assert_raise(Segment::InitializeError){
-      Segment.new(vec00, vec01)
+    assert_raise(Mageo::Segment::InitializeError){
+      Mageo::Segment.new(vec00, vec01)
     }
-    assert_raise(Segment::InitializeError){
-      Segment.new(VEC_00, VEC_00)
+    assert_raise(Mageo::Segment::InitializeError){
+      Mageo::Segment.new(VEC_00, VEC_00)
     }
   end
 
@@ -39,7 +40,7 @@ class TC_Segment < Test::Unit::TestCase
   end
 
   def test_include?
-    assert_raise(Segment::TypeError){
+    assert_raise(Mageo::Segment::TypeError){
       @s02.include?([0.0, 0.0, 0.0], $tolerance)
     }
 
@@ -62,17 +63,17 @@ class TC_Segment < Test::Unit::TestCase
   end
 
   def test_eql?
-    assert_raise(Segment::TypeError){ @s00.eql?([[0,0,0],[1,1,1]])}
+    assert_raise(Mageo::Segment::TypeError){ @s00.eql?([[0,0,0],[1,1,1]])}
 
-    assert_equal(true , @s00.eql?(Segment.new(VEC_01, VEC_00)))
+    assert_equal(true , @s00.eql?(Mageo::Segment.new(VEC_01, VEC_00)))
     assert_equal(false, @s00.eql?(@s01))
   end
 
   def test_equal2
-    assert_raise(Segment::TypeError){ @s00.eql?([[0,0,0],[1,1,1]])}
+    assert_raise(Mageo::Segment::TypeError){ @s00.eql?([[0,0,0],[1,1,1]])}
 
-    assert_equal(true , @s00 == Segment.new(VEC_00, VEC_01))
-    assert_equal(false, @s00 == Segment.new(VEC_01, VEC_00))
+    assert_equal(true , @s00 == Mageo::Segment.new(VEC_00, VEC_01))
+    assert_equal(false, @s00 == Mageo::Segment.new(VEC_01, VEC_00))
     assert_equal(false, @s00 == @s01)
   end
 

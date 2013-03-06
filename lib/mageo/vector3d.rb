@@ -2,11 +2,12 @@
 
 # written by Ippei KISHIDA
 #
-require "matrix"
-require "mageo/polar2d.rb"
-require "mageo/polar3d.rb"
-require "mageo/axes.rb"
-require "mageo/vector.rb"
+#require "mageo.rb"
+#require "matrix"
+#require "mageo/polar2d.rb"
+#require "mageo/polar3d.rb"
+#require "mageo/axes.rb"
+#require "mageo/vector.rb"
 require "rubygems"
 gem "malge"
 require "malge.rb"
@@ -165,8 +166,8 @@ class Vector3D < Vector
 
   # Convert to Vector3DInternal. Non-destructive.
   def to_v3di(axes)
-    #pp axes.is_a?(Axes)
-    raise TypeError unless axes.is_a?(Axes)
+    #pp axes.is_a?(Mageo::Axes)
+    raise TypeError unless axes.is_a?(Mageo::Axes)
 
     axes = axes.to_a
     Vector3DInternal[ *(Malge::SimultaneousEquations.cramer(axes.transpose, self)) ]
@@ -196,17 +197,17 @@ class Vector3D < Vector
     self.class.angle_degree(self, vec)
   end
 
-  #3次元極座標への変換した Polar3D インスタンスを返す。
+  #3次元極座標への変換した Mageo::Polar3D インスタンスを返す。
   def to_p3d
     r = self.r
     if r == 0.0
       theta = 0.0
       phi = 0.0
     else
-      theta = Polar2D.minimum_radian(Math::acos(self[2] / r))
+      theta = Mageo::Polar2D.minimum_radian(Math::acos(self[2] / r))
       phi = Vector[ self[0], self[1] ].to_p2d.theta
     end
-    Polar3D.new(r, theta, phi)
+    Mageo::Polar3D.new(r, theta, phi)
   end
 
   #x, y, z 軸のいずれかで self を回転する。破壊的。

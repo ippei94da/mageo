@@ -3,8 +3,9 @@
 
 require "test/unit"
 require "helper"
-require "mageo/polar3d.rb"
-require "mageo/vector3d.rb"
+require 'mageo.rb'
+#require "mageo/polar3d.rb"
+#require "mageo/vector3d.rb"
 
 class TC_Polar3D < Test::Unit::TestCase
   $tolerance = 10**(-10)
@@ -12,10 +13,10 @@ class TC_Polar3D < Test::Unit::TestCase
   include Math
 
   def setup
-    @p3d00 = Polar3D.new( 0.0, 0.00*PI, 0.00*PI)
-    @p3d01 = Polar3D.new( 2.0, 0.00*PI, 0.25*PI)
-    @p3d02 = Polar3D.new( 2.0, 0.25*PI, 0.00*PI)
-    @p3d03 = Polar3D.new( 2.0, 0.25*PI, 0.25*PI)
+    @p3d00 = Mageo::Polar3D.new( 0.0, 0.00*PI, 0.00*PI)
+    @p3d01 = Mageo::Polar3D.new( 2.0, 0.00*PI, 0.25*PI)
+    @p3d02 = Mageo::Polar3D.new( 2.0, 0.25*PI, 0.00*PI)
+    @p3d03 = Mageo::Polar3D.new( 2.0, 0.25*PI, 0.25*PI)
   end
 
   def test_to_v3d
@@ -43,49 +44,49 @@ class TC_Polar3D < Test::Unit::TestCase
   end
 
   def test_minimize_phi!
-    p2pA = Polar3D.new( 2.0, 0.5*PI, -2.5*PI )
+    p2pA = Mageo::Polar3D.new( 2.0, 0.5*PI, -2.5*PI )
     p2pA.minimize_phi!
     assert_in_delta( 1.5*PI, p2pA.phi, $tolerance )
 
-    p2pB = Polar3D.new( 2.0, 0.5*PI, -0.5*PI )
+    p2pB = Mageo::Polar3D.new( 2.0, 0.5*PI, -0.5*PI )
     p2pB.minimize_phi!
     assert_in_delta( 1.5*PI, p2pB.phi, $tolerance )
 
-    p2pC = Polar3D.new( 2.0, 0.5*PI,  1.5*PI )
+    p2pC = Mageo::Polar3D.new( 2.0, 0.5*PI,  1.5*PI )
     p2pC.minimize_phi!
     assert_in_delta( 1.5*PI, p2pC.phi, $tolerance )
 
-    p2pD = Polar3D.new( 2.0, 0.5*PI,  3.5*PI )
+    p2pD = Mageo::Polar3D.new( 2.0, 0.5*PI,  3.5*PI )
     p2pD.minimize_phi!
     assert_in_delta( 1.5*PI, p2pD.phi, $tolerance )
 
-    p2pE = Polar3D.new( 2.0, 0.5*PI,  5.5*PI )
+    p2pE = Mageo::Polar3D.new( 2.0, 0.5*PI,  5.5*PI )
     p2pE.minimize_phi!
     assert_in_delta( 1.5*PI, p2pE.phi, $tolerance )
 
-    p2pF = Polar3D.new( 2.0, 0.5*PI,  4.5*PI )
+    p2pF = Mageo::Polar3D.new( 2.0, 0.5*PI,  4.5*PI )
     p2pF.minimize_phi!
     assert_in_delta( 0.5*PI, p2pF.phi, $tolerance )
 
   end
 
   def test_minimize_phi
-    p2pA = Polar3D.new( 2.0, 0.5*PI, -2.5*PI ).minimize_phi
+    p2pA = Mageo::Polar3D.new( 2.0, 0.5*PI, -2.5*PI ).minimize_phi
     assert_in_delta( 1.5*PI, p2pA.phi, $tolerance )
 
-    p2pB = Polar3D.new( 2.0, 0.5*PI, -0.5*PI ).minimize_phi
+    p2pB = Mageo::Polar3D.new( 2.0, 0.5*PI, -0.5*PI ).minimize_phi
     assert_in_delta( 1.5*PI, p2pB.phi, $tolerance )
 
-    p2pC = Polar3D.new( 2.0, 0.5*PI,  1.5*PI ).minimize_phi
+    p2pC = Mageo::Polar3D.new( 2.0, 0.5*PI,  1.5*PI ).minimize_phi
     assert_in_delta( 1.5*PI, p2pC.phi, $tolerance )
 
-    p2pD = Polar3D.new( 2.0, 0.5*PI,  3.5*PI ).minimize_phi
+    p2pD = Mageo::Polar3D.new( 2.0, 0.5*PI,  3.5*PI ).minimize_phi
     assert_in_delta( 1.5*PI, p2pD.phi, $tolerance )
 
-    p2pE = Polar3D.new( 2.0, 0.5*PI,  5.5*PI ).minimize_phi
+    p2pE = Mageo::Polar3D.new( 2.0, 0.5*PI,  5.5*PI ).minimize_phi
     assert_in_delta( 1.5*PI, p2pE.phi, $tolerance )
 
-    p2pF = Polar3D.new( 2.0, 0.5*PI,  4.5*PI ).minimize_phi
+    p2pF = Mageo::Polar3D.new( 2.0, 0.5*PI,  4.5*PI ).minimize_phi
     assert_in_delta( 0.5*PI, p2pF.phi, $tolerance )
 
   end

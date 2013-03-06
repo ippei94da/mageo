@@ -1,12 +1,13 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "mageo/vector3d.rb"
+#require "mageo.rb"
+#require "mageo/vector3d.rb"
 
 #
 # 球を表現するクラス。
 #
-class Sphere
+class Mageo::Sphere
   attr_reader :position, :radius
 
   # 座標と半径

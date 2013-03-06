@@ -3,8 +3,9 @@
 
 require "test/unit"
 require "helper"
-require "mageo/vector.rb"
-require "mageo/polar2d.rb"
+require 'mageo.rb'
+#require "mageo/vector.rb"
+#require "mageo/polar2d.rb"
 
 
 class TC_Vector < Test::Unit::TestCase
@@ -21,7 +22,7 @@ class TC_Vector < Test::Unit::TestCase
   def test_to_p2d
     assert_raise( Vector::SizeError ){ @v0.to_p2d }
     assert_raise( Vector::SizeError ){ @v2.to_p2d }
-    assert_equal( Polar2D        , @v1.to_p2d.class )
+    assert_equal( Mageo::Polar2D        , @v1.to_p2d.class )
     assert_equal( Math::sqrt(2.0), @v1.to_p2d.r )
     assert_equal( 0.25*PI        , @v1.to_p2d.theta )
 
@@ -44,10 +45,10 @@ class TC_Polar2D < Test::Unit::TestCase
   include Math
 
   def setup
-    @p2d00 = Polar2D.new( 0.0, 0.0*PI)
-    @p2d01 = Polar2D.new( 0.0, 2.0*PI)
-    @p2d02 = Polar2D.new( 2.0, 0.0*PI)
-    @p2d03 = Polar2D.new( 2.0, 0.1*PI)
+    @p2d00 = Mageo::Polar2D.new( 0.0, 0.0*PI)
+    @p2d01 = Mageo::Polar2D.new( 0.0, 2.0*PI)
+    @p2d02 = Mageo::Polar2D.new( 2.0, 0.0*PI)
+    @p2d03 = Mageo::Polar2D.new( 2.0, 0.1*PI)
   end
 
   def test_to_v
@@ -58,7 +59,7 @@ class TC_Polar2D < Test::Unit::TestCase
   end
 
   def test_rotate
-    assert_equal( Polar2D, @p2d00.rotate( 0.2 * PI ).class )
+    assert_equal( Mageo::Polar2D, @p2d00.rotate( 0.2 * PI ).class )
 
     assert_in_delta( 0.0   , @p2d00.rotate( 0.2 * PI ).r    , $tolerance )
     assert_in_delta( 0.2*PI, @p2d00.rotate( 0.2 * PI ).theta, $tolerance )
@@ -93,60 +94,60 @@ class TC_Polar2D < Test::Unit::TestCase
   end
 
   def test_minimize_theta!
-    p2pA = Polar2D.new( 2.0, -2.5*PI )
+    p2pA = Mageo::Polar2D.new( 2.0, -2.5*PI )
     p2pA.minimize_theta!
     assert_in_delta( 1.5*PI, p2pA.theta, $tolerance )
 
-    p2pB = Polar2D.new( 2.0, -0.5*PI )
+    p2pB = Mageo::Polar2D.new( 2.0, -0.5*PI )
     p2pB.minimize_theta!
     assert_in_delta( 1.5*PI, p2pB.theta, $tolerance )
 
-    p2pC = Polar2D.new( 2.0,  1.5*PI )
+    p2pC = Mageo::Polar2D.new( 2.0,  1.5*PI )
     p2pC.minimize_theta!
     assert_in_delta( 1.5*PI, p2pC.theta, $tolerance )
 
-    p2pD = Polar2D.new( 2.0,  3.5*PI )
+    p2pD = Mageo::Polar2D.new( 2.0,  3.5*PI )
     p2pD.minimize_theta!
     assert_in_delta( 1.5*PI, p2pD.theta, $tolerance )
 
-    p2pE = Polar2D.new( 2.0,  5.5*PI )
+    p2pE = Mageo::Polar2D.new( 2.0,  5.5*PI )
     p2pE.minimize_theta!
     assert_in_delta( 1.5*PI, p2pE.theta, $tolerance )
 
-    p2pF = Polar2D.new( 2.0,  4.5*PI )
+    p2pF = Mageo::Polar2D.new( 2.0,  4.5*PI )
     p2pF.minimize_theta!
     assert_in_delta( 0.5*PI, p2pF.theta, $tolerance )
 
   end
 
   def test_minimize_theta
-    p2pA = Polar2D.new( 2.0, -2.5*PI ).minimize_theta
+    p2pA = Mageo::Polar2D.new( 2.0, -2.5*PI ).minimize_theta
     assert_in_delta( 1.5*PI, p2pA.theta, $tolerance )
 
-    p2pB = Polar2D.new( 2.0, -0.5*PI ).minimize_theta
+    p2pB = Mageo::Polar2D.new( 2.0, -0.5*PI ).minimize_theta
     assert_in_delta( 1.5*PI, p2pB.theta, $tolerance )
 
-    p2pC = Polar2D.new( 2.0,  1.5*PI ).minimize_theta
+    p2pC = Mageo::Polar2D.new( 2.0,  1.5*PI ).minimize_theta
     assert_in_delta( 1.5*PI, p2pC.theta, $tolerance )
 
-    p2pD = Polar2D.new( 2.0,  3.5*PI ).minimize_theta
+    p2pD = Mageo::Polar2D.new( 2.0,  3.5*PI ).minimize_theta
     assert_in_delta( 1.5*PI, p2pD.theta, $tolerance )
 
-    p2pE = Polar2D.new( 2.0,  5.5*PI ).minimize_theta
+    p2pE = Mageo::Polar2D.new( 2.0,  5.5*PI ).minimize_theta
     assert_in_delta( 1.5*PI, p2pE.theta, $tolerance )
 
-    p2pF = Polar2D.new( 2.0,  4.5*PI ).minimize_theta
+    p2pF = Mageo::Polar2D.new( 2.0,  4.5*PI ).minimize_theta
     assert_in_delta( 0.5*PI, p2pF.theta, $tolerance )
 
   end
 
   def test_minimum_radian
-    assert_in_delta( 1.5*PI, Polar2D.minimum_radian( -2.5*PI ), $tolerance )
-    assert_in_delta( 1.5*PI, Polar2D.minimum_radian( -0.5*PI ), $tolerance )
-    assert_in_delta( 1.5*PI, Polar2D.minimum_radian(  1.5*PI ), $tolerance )
-    assert_in_delta( 1.5*PI, Polar2D.minimum_radian(  3.5*PI ), $tolerance )
-    assert_in_delta( 0.5*PI, Polar2D.minimum_radian(  4.5*PI ), $tolerance )
-    assert_in_delta( 1.5*PI, Polar2D.minimum_radian(  5.5*PI ), $tolerance )
+    assert_in_delta( 1.5*PI, Mageo::Polar2D.minimum_radian( -2.5*PI ), $tolerance )
+    assert_in_delta( 1.5*PI, Mageo::Polar2D.minimum_radian( -0.5*PI ), $tolerance )
+    assert_in_delta( 1.5*PI, Mageo::Polar2D.minimum_radian(  1.5*PI ), $tolerance )
+    assert_in_delta( 1.5*PI, Mageo::Polar2D.minimum_radian(  3.5*PI ), $tolerance )
+    assert_in_delta( 0.5*PI, Mageo::Polar2D.minimum_radian(  4.5*PI ), $tolerance )
+    assert_in_delta( 1.5*PI, Mageo::Polar2D.minimum_radian(  5.5*PI ), $tolerance )
   end
 end
 

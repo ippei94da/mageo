@@ -1,10 +1,11 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "mageo/vector3d.rb"
+#require "mageo.rb"
+#require "mageo/vector3d.rb"
 
 # 線分を表すクラス。
-class Segment
+class Mageo::Segment
   attr_reader :endpoints
 
   class InitializeError < Exception; end
@@ -64,7 +65,7 @@ class Segment
   # 等価チェック。
   # uniq できるようにするため。
   def eql?(other)
-    raise TypeError if other.class != Segment
+    raise TypeError if other.class != Mageo::Segment
     @endpoints.each do |point|
       return false unless other.endpoints.include?(point)
     end
@@ -72,7 +73,7 @@ class Segment
   end
 
   def ==(other)
-    raise TypeError if other.class != Segment
+    raise TypeError if other.class != Mageo::Segment
     @endpoints.size.times do |i|
       return false unless other.endpoints[i] == @endpoints[i]
     end

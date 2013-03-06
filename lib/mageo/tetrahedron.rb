@@ -1,15 +1,16 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "mageo/vector3d.rb"
-require "mageo/triangle.rb"
-require "mageo/polyhedron.rb"
+#require "mageo.rb"
+#require "mageo/vector3d.rb"
+#require "mageo/triangle.rb"
+#require "mageo/polyhedron.rb"
 
 
 #
 # 直交座標系 3次元空間内の四面体を表現するクラス。
 #
-class Tetrahedron < Polyhedron
+class Tetrahedron < Mageo::Polyhedron
 
   class InitializeError < Exception; end
 
