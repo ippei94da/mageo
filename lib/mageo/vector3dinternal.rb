@@ -1,5 +1,9 @@
 #require 'mageo/vector3d.rb'
+<<<<<<< HEAD
 #require 'mageo.rb'
+=======
+require 'mageo.rb'
+>>>>>>> 234bd769f956578c1d010c9f440f20bd470e8b97
 
 class Array
   def to_v3di

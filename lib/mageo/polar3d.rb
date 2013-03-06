@@ -1,7 +1,11 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
+<<<<<<< HEAD
 #require "mageo.rb"
+=======
+require "mageo.rb"
+>>>>>>> 234bd769f956578c1d010c9f440f20bd470e8b97
 
 #3次元極座標。
 #極座標ライブラリでは、角度は基本的に radian を使用する。
