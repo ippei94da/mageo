@@ -1,16 +1,6 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-<<<<<<< HEAD
-#require "mageo.rb"
-=======
-require "mageo.rb"
->>>>>>> 234bd769f956578c1d010c9f440f20bd470e8b97
-#require "mageo/vector3d.rb"
-#require "mageo/triangle.rb"
-#require "mageo/polyhedron.rb"
-
-
 # 3次元空間中の八面体を表現するクラス
 class Mageo::Octahedron < Mageo::Polyhedron
 

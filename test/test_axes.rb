@@ -3,11 +3,6 @@
 
 require "helper"
 require "test/unit"
-<<<<<<< HEAD
-#require 'mageo.rb'
-=======
-require 'mageo.rb'
->>>>>>> 234bd769f956578c1d010c9f440f20bd470e8b97
 #require "mageo/axes.rb"
 
 class TC_Axes < Test::Unit::TestCase

@@ -1,17 +1,5 @@
 #! /usr/bin/ruby
 
-# written by Ippei KISHIDA
-#
-<<<<<<< HEAD
-#require "mageo.rb"
-=======
-require "mageo.rb"
->>>>>>> 234bd769f956578c1d010c9f440f20bd470e8b97
-#require "matrix"
-#require "mageo/polar2d.rb"
-#require "mageo/polar3d.rb"
-#require "mageo/axes.rb"
-#require "mageo/vector.rb"
 require "rubygems"
 gem "malge"
 require "malge.rb"
