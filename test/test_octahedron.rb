@@ -1,9 +1,9 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "test/unit"
 require "helper"
-require 'mageo.rb'
+#require "test/unit"
+#require 'mageo.rb'
 #require "mageo/octahedron.rb"
 gem "builtinextension"
   require "array_include_eql.rb"

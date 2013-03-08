@@ -1,8 +1,9 @@
 #! /usr/bin/ruby
 
-require "test/unit"
+require "helper"
+#require "test/unit"
 require "matrix"
-require 'mageo.rb'
+#require 'mageo.rb'
 #require "mageo/vector3d.rb"
 #require "mageo/vector3dinternal.rb"
 #require "mageo/polar2d.rb"

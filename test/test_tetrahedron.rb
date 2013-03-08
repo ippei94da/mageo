@@ -1,11 +1,12 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "test/unit"
+require "helper"
+#require "test/unit"
 require "rubygems"
 gem "builtinextension"
 require "array_include_eql.rb"
-require 'mageo.rb'
+#require 'mageo.rb'
 #require "mageo/tetrahedron.rb"
 
 class Tetrahedron

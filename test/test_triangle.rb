@@ -1,8 +1,9 @@
 #! /usr/bin/env ruby
 # coding: utf-8
 
-require "test/unit"
-require 'mageo.rb'
+require "helper"
+#require "test/unit"
+#require 'mageo.rb'
 #require "mageo/triangle.rb"
 #require "mageo/vector3d.rb"
 

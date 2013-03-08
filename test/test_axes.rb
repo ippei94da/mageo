@@ -2,7 +2,7 @@
 # coding: utf-8
 
 require "helper"
-require "test/unit"
+#require "test/unit"
 #require "mageo/axes.rb"
 
 class TC_Axes < Test::Unit::TestCase

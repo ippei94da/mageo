@@ -2,8 +2,8 @@
 # coding: utf-8
 
 require "helper"
-require "test/unit"
-require 'mageo.rb'
+#require "test/unit"
+#require 'mageo.rb'
 #require "mageo/sphere.rb"
 #require "mageo/vector3d.rb"
 
