@@ -10,7 +10,7 @@ group :development do
   gem "bundler", "~> 1.2.2"
   gem "jeweler", "~> 1.8.3"
   gem "malge", ">= 0.0.2"
-  #gem "psych", ">= 0"
+  gem "psych", ">= 0"
   gem "rdoc", "~> 3.12"
   gem "simplecov", ">= 0"
 end
