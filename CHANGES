@@ -3,6 +3,8 @@
 == Master (for 0.0.2)
   - Make a namespace 'Mageo'.
   - Most of classes are included into the namespace 'Mageo'.
+  - Adjust to malge-0.0.8
+  - Move Tetrahedron to Mageo::Tetrahedron
 
 == Version (for 0.0.1)
   - Change indent style from tab char to two spaces.

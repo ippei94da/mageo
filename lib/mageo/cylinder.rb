@@ -2,7 +2,7 @@
 # coding: utf-8
 
 #
-# 球を表現するクラス。
+# Class for cylinder
 #
 class Mageo::Cylinder
   attr_reader :positions, :radius

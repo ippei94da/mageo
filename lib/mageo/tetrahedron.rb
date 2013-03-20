@@ -4,7 +4,7 @@
 #
 # 直交座標系 3次元空間内の四面体を表現するクラス。
 #
-class Tetrahedron < Mageo::Polyhedron
+class Mageo::Tetrahedron < Mageo::Polyhedron
 
   class InitializeError < Exception; end
 

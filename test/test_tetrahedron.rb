@@ -9,7 +9,7 @@ require "array_include_eql.rb"
 #require 'mageo.rb'
 #require "mageo/tetrahedron.rb"
 
-class Tetrahedron
+class Mageo::Tetrahedron
   public :center
 end
 
@@ -27,37 +27,37 @@ class TC_Tetrahedron < Test::Unit::TestCase
   V_13 = Mageo::Vector3D[10.0,20.0, 0.0]
 
   def setup
-    @t00 = Tetrahedron.new( [ V_00, V_01, V_02, V_03 ])
-    @t01 = Tetrahedron.new( [ V_10, V_11, V_12, V_13 ])
+    @t00 = Mageo::Tetrahedron.new( [ V_00, V_01, V_02, V_03 ])
+    @t01 = Mageo::Tetrahedron.new( [ V_10, V_11, V_12, V_13 ])
   end
 
   def test_initialize
-    assert_raise( ArgumentError ){ Tetrahedron.new }
-    assert_raise( ArgumentError ){ Tetrahedron.new() }
-    assert_raise( Tetrahedron::InitializeError ){ Tetrahedron.new( nil ) }
-    assert_raise( Tetrahedron::InitializeError ){ Tetrahedron.new( [] ) }
-    assert_raise( Tetrahedron::InitializeError ){ Tetrahedron.new( [ 0, 1, 2, 3 ] ) }
-    assert_raise( Tetrahedron::InitializeError ){ Tetrahedron.new( [ [], [], [], [] ] ) }
-    assert_raise( Tetrahedron::InitializeError ){
-      Tetrahedron.new( [ V_00, V_01, V_02, [ 0.0, 0.0 ] ])
+    assert_raise( ArgumentError ){ Mageo::Tetrahedron.new }
+    assert_raise( ArgumentError ){ Mageo::Tetrahedron.new() }
+    assert_raise( Mageo::Tetrahedron::InitializeError ){ Mageo::Tetrahedron.new( nil ) }
+    assert_raise( Mageo::Tetrahedron::InitializeError ){ Mageo::Tetrahedron.new( [] ) }
+    assert_raise( Mageo::Tetrahedron::InitializeError ){ Mageo::Tetrahedron.new( [ 0, 1, 2, 3 ] ) }
+    assert_raise( Mageo::Tetrahedron::InitializeError ){ Mageo::Tetrahedron.new( [ [], [], [], [] ] ) }
+    assert_raise( Mageo::Tetrahedron::InitializeError ){
+      Mageo::Tetrahedron.new( [ V_00, V_01, V_02, [ 0.0, 0.0 ] ])
     }
-    assert_raise( Tetrahedron::InitializeError ){
-      Tetrahedron.new( [ V_00, V_01, V_02, [ 0.0, 0.0, 1.0, 0.0 ] ])
+    assert_raise( Mageo::Tetrahedron::InitializeError ){
+      Mageo::Tetrahedron.new( [ V_00, V_01, V_02, [ 0.0, 0.0, 1.0, 0.0 ] ])
     }
 
     # 5点ある
-    assert_raise( Tetrahedron::InitializeError ){
-      Tetrahedron.new( [ V_00, V_01, V_02, V_03, [ 1.0, 1.0, 1.0] ])
+    assert_raise( Mageo::Tetrahedron::InitializeError ){
+      Mageo::Tetrahedron.new( [ V_00, V_01, V_02, V_03, [ 1.0, 1.0, 1.0] ])
     }
   
     # 体積が 0.0 になるのはエラー
-    assert_raise( Tetrahedron::InitializeError ){
-      Tetrahedron.new( [ V_00, V_01, V_02, [ 2.0, 2.0, 0.0] ])
+    assert_raise( Mageo::Tetrahedron::InitializeError ){
+      Mageo::Tetrahedron.new( [ V_00, V_01, V_02, [ 2.0, 2.0, 0.0] ])
     }
 
     # Mageo::Vector3DInternal なら 例外
-    assert_raise( Tetrahedron::InitializeError ){
-      Tetrahedron.new( 
+    assert_raise( Mageo::Tetrahedron::InitializeError ){
+      Mageo::Tetrahedron.new( 
         [ Mageo::Vector3DInternal[ 0.0, 0.0, 0.0],
           Mageo::Vector3DInternal[ 1.0, 0.0, 0.0],
           Mageo::Vector3DInternal[ 0.0, 1.0, 0.0],
@@ -68,7 +68,7 @@ class TC_Tetrahedron < Test::Unit::TestCase
   
     # Mageo::Vector3D なら OK
     assert_nothing_raised{
-      Tetrahedron.new( [ V_00, V_01, V_02, V_03 ])
+      Mageo::Tetrahedron.new( [ V_00, V_01, V_02, V_03 ])
     }
   end
 
@@ -79,9 +79,9 @@ class TC_Tetrahedron < Test::Unit::TestCase
     assert_equal( false, @t00.inside?( [ 0.0, 0.0, 0.0] ) ) #頂点上
 
     assert_raise(Mageo::Polyhedron::TypeError){@t00.inside?(Mageo::Vector3DInternal[1.0, 1.0, 1.0])}
-    assert_raise(Tetrahedron::TypeError){@t00.inside?(Mageo::Vector3DInternal[1.0, 1.0, 1.0])}
+    assert_raise(Mageo::Tetrahedron::TypeError){@t00.inside?(Mageo::Vector3DInternal[1.0, 1.0, 1.0])}
     #pp Mageo::Polyhedron::TypeError.ancestors
-    #pp Tetrahedron::TypeError.ancestors
+    #pp Mageo::Tetrahedron::TypeError.ancestors
   end
 
   def test_include?

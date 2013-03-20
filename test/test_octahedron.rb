@@ -6,7 +6,7 @@ require "helper"
 #require 'mageo.rb'
 #require "mageo/octahedron.rb"
 gem "builtinextension"
-  require "array_include_eql.rb"
+require "array_include_eql.rb"
 
 class Mageo::Octahedron
   public :center

@@ -13,8 +13,8 @@
 #   - 頂点リスト @vertices と、面リスト @vertex_indices_of_triangles を持つ。
 #     ただし、@vertex_indices_of_triangles は Mageo::Triangle クラスインスタンスではなく、
 #     @vertices 内の index。
-#     see Tetrahedron.rb
-#   - メインのテストは 四面体 Tetrahedron クラスで行っている。
+#     see Mageo::Tetrahedron.rb
+#   - メインのテストは 四面体 Mageo::Tetrahedron クラスで行っている。
 class Mageo::Polyhedron
   attr_reader :vertices
 

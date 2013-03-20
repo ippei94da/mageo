@@ -1,5 +1,9 @@
 module Mageo; end
 
+require "rubygems"
+#gem     "malge"
+require "malge"
+
 require "mageo/axes.rb"
 require "mageo/cylinder.rb"
 require "mageo/polar2d.rb"
