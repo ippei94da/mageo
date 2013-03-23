@@ -54,7 +54,7 @@ class Mageo::Polyhedron
     return result
   end
 
-  def include?(pos, tolerance)
+  def include?(pos, tolerance = 0.0)
     raise TypeError if pos.class == Mageo::Vector3DInternal
 
     return true if inside?( pos )

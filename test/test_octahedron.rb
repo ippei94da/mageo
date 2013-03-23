@@ -95,6 +95,7 @@ class TC_Octahedron < Test::Unit::TestCase
   def test_include?
     assert_equal( true , @o00.include?( [0.0, 0.2, 0.4], $tolerance ) )
     assert_equal( true , @o00.include?( [1.0, 0.0, 0.0], $tolerance ) ) #境界上
+    assert_equal( true , @o00.include?( [1.0, 0.0, 0.0] ) ) #境界上, no tolerance
     assert_equal( false, @o00.include?( [2.0, 0.2, 0.4], $tolerance ) )
   end
 
