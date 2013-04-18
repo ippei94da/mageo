@@ -6,6 +6,7 @@
   - Adjust to malge-0.0.8
   - Move Tetrahedron to Mageo::Tetrahedron
   - Set default value of tolerance=0.0 in argument of Polyhedron#include?
+  - Adjust to builtinextension-0.1.0.
 
 == Version (for 0.0.1)
   - Change indent style from tab char to two spaces.

@@ -3,9 +3,9 @@
 
 require "helper"
 #require "test/unit"
-require "rubygems"
-gem "builtinextension"
-require "array_include_eql.rb"
+#require "rubygems"
+#gem "builtinextension"
+#require "array/includeeql.rb"
 #require 'mageo.rb'
 #require "mageo/tetrahedron.rb"
 

@@ -6,8 +6,8 @@ source "http://rubygems.org"
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
-  gem "builtinextension", ">= 0"
-  gem "bundler", "~> 1.3.4"
+  gem "builtinextension", ">= 0.1.0"
+  gem "bundler", "~> 1.3.5"
   gem "jeweler", "~> 1.8.3"
   gem "malge", ">= 0.0.8"
   #gem "psych", ">= 0"

@@ -2,11 +2,8 @@
 # coding: utf-8
 
 require "helper"
-#require "test/unit"
-#require 'mageo.rb'
-#require "mageo/octahedron.rb"
-gem "builtinextension"
-require "array_include_eql.rb"
+#gem "builtinextension"
+#require "array/includeeql.rb"
 
 class Mageo::Octahedron
   public :center
@@ -116,12 +113,12 @@ class TC_Octahedron < Test::Unit::TestCase
   def test_vertices
     t = @o00.vertices
     assert_equal(6, t.size)
-    assert_equal(true , t.include_eql?(V_X_MINUS))
-    assert_equal(true , t.include_eql?(V_X_PLUS ))
-    assert_equal(true , t.include_eql?(V_Y_MINUS))
-    assert_equal(true , t.include_eql?(V_Y_PLUS ))
-    assert_equal(true , t.include_eql?(V_Z_MINUS))
-    assert_equal(true , t.include_eql?(V_Z_PLUS ))
+    assert_equal(V_X_MINUS, t[0])
+    assert_equal(V_X_PLUS , t[1])
+    assert_equal(V_Y_MINUS, t[2])
+    assert_equal(V_Y_PLUS , t[3])
+    assert_equal(V_Z_MINUS, t[4])
+    assert_equal(V_Z_PLUS , t[5])
   end
 
   def test_triangles
