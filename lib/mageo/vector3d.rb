@@ -1,10 +1,7 @@
 #! /usr/bin/ruby
 
 require "rubygems"
-gem "malge"
-require "malge.rb"
-#require "malge/simultaneousequations.rb"
-#require "simultaneousequations.rb"
+require "malge"
 
 # Open class to add "to_v3d" method.
 class Array
@@ -29,14 +26,13 @@ end
 # in native Vector class.
 # This class is constructed under the assumption in the Cartesian coordinate.
 # If you want to be in an internal coordinate, you can use Math/Mageo::Vector3DInternal.rb .
-# 
+#
 # Memo:
 #   Mageo::Vector3DInternal との対比として、Vector3DCartesian という名前にすることも考えたが、
 #   長くなるし、普通直交座標で考えるよね、と。
-# 
+#
 #   インスタンス生成の時点で要素数をチェックし、要素の追加削除を禁止しているので
 #   要素数は常に3であることが保証されている。
-# 
 class Mageo::Vector3D < Vector
 
   class TypeError < Exception; end
@@ -49,7 +45,7 @@ class Mageo::Vector3D < Vector
     raise RangeError, "#{args}" unless args.size == 3
     super(*args)
   end
-  
+
   # Get the exterior product.
   def self.exterior_product(vec0, vec1)
     [vec0, vec1].each_with_index do |vec, index|
@@ -108,13 +104,12 @@ class Mageo::Vector3D < Vector
     raise RangeError, "index: #{index}." if (index < 0 || 2 < index)
     super index
   end
-  
+
   def []=(index, val)
     raise RangeError, "index: #{index}." if (index < 0 || 2 < index)
     super index, val
   end
-  
-  
+
   # ベクトルが等しいかチェック。
   # other として Mageo::Vector3D クラス以外のインスタンス渡すと Vector3D::TypeError。
   # 両者の差分ベクトルの長さが tolerance 以下という判定になる。
@@ -157,7 +152,13 @@ class Mageo::Vector3D < Vector
   end
 
   # Convert to Mageo::Vector3DInternal. Non-destructive.
-  def to_v3di(axes)
+  def internal_coordinates(axes)
+    TODO
+  end
+
+  # Change the self.class to Vector3DInternal,
+  # Keeping the values of coordinates.
+  def to_v3di
     #pp axes.is_a?(Mageo::Axes)
     raise TypeError unless axes.is_a?(Mageo::Axes)
 

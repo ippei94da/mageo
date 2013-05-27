@@ -1,13 +1,7 @@
 #! /usr/bin/ruby
 
 require "helper"
-#require "test/unit"
 require "matrix"
-#require 'mageo.rb'
-#require "mageo/vector3d.rb"
-#require "mageo/vector3dinternal.rb"
-#require "mageo/polar2d.rb"
-#require "mageo/polar3d.rb"
 
 class TC_Array < Test::Unit::TestCase
   $tolerance = 10.0**(-10)
@@ -305,11 +299,15 @@ class TC_Vector3D < Test::Unit::TestCase
   end
 
   def test_to_v3di
+    TODO
+  end
+
+  def test_internal_coordinates
     array = [ [1.0, 1.0, 1.0], [0.0, 1.0, 1.0], [0.0, 0.0, 1.0] ]
-    assert_raise(Mageo::Vector3D::TypeError){ Mageo::Vector3D[ 2.0, 5.0, 9.0 ].to_v3di(array) }
+    assert_raise(Mageo::Vector3D::TypeError){ Mageo::Vector3D[ 2.0, 5.0, 9.0 ].internal_coordinates(array) }
 
     axes = Mageo::Axes.new(array)
-    t = Mageo::Vector3D[ 2.0, 5.0, 9.0 ].to_v3di( axes )
+    t = Mageo::Vector3D[ 2.0, 5.0, 9.0 ].internal_coordinates( axes )
     assert_equal( Mageo::Vector3DInternal, t.class )
     assert_in_delta( 2.0, t[0], $tolerance )
     assert_in_delta( 3.0, t[1], $tolerance )

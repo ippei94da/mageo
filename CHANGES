@@ -2,16 +2,20 @@
 
 == Master (for 0.0.3)
 
+rename
+* to_v3d
+* to_v3d を使っていたコードを internal_coordinates か to_v3d にするか、全部見てまわる。
+
 == Version (for 0.0.2) [2013-04-18] released
-  - Make a namespace 'Mageo'.
-  - Most of classes are included into the namespace 'Mageo'.
-  - Adjust to malge-0.0.8
-  - Move Tetrahedron to Mageo::Tetrahedron
-  - Set default value of tolerance=0.0 in argument of Polyhedron#include?
-  - Adjust to builtinextension-0.1.0.
+* Make a namespace 'Mageo'.
+* Most of classes are included into the namespace 'Mageo'.
+* Adjust to malge-0.0.8
+* Move Tetrahedron to Mageo::Tetrahedron
+* Set default value of tolerance=0.0 in argument of Polyhedron#include?
+* Adjust to builtinextension-0.1.0.
 
 == Version (for 0.0.1)
-  - Change indent style from tab char to two spaces.
-  - Adjust to malge 0.0.2.
+* Change indent style from tab char to two spaces.
+* Adjust to malge 0.0.2.
 
 == Version 0.0.0
