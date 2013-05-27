@@ -153,17 +153,17 @@ class Mageo::Vector3D < Vector
 
   # Convert to Mageo::Vector3DInternal. Non-destructive.
   def internal_coordinates(axes)
-    TODO
+    raise TypeError unless axes.is_a?(Mageo::Axes)
+
+    axes = axes.to_a
+    Mageo::Vector3DInternal[ *(Malge::SimultaneousEquations.cramer(axes.transpose, self)) ]
   end
 
   # Change the self.class to Vector3DInternal,
   # Keeping the values of coordinates.
   def to_v3di
-    #pp axes.is_a?(Mageo::Axes)
-    raise TypeError unless axes.is_a?(Mageo::Axes)
-
-    axes = axes.to_a
-    Mageo::Vector3DInternal[ *(Malge::SimultaneousEquations.cramer(axes.transpose, self)) ]
+    axes = Mageo::Axes.new( [ [1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0] ])
+    internal_coordinates(axes)
   end
 
   #Return size, always 3.

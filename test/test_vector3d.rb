@@ -299,7 +299,11 @@ class TC_Vector3D < Test::Unit::TestCase
   end
 
   def test_to_v3di
-    TODO
+    t = Mageo::Vector3D[ 2.0, 5.0, 9.0 ].to_v3di
+    assert_equal( Mageo::Vector3DInternal, t.class )
+    assert_in_delta( 2.0, t[0], $tolerance )
+    assert_in_delta( 5.0, t[1], $tolerance )
+    assert_in_delta( 9.0, t[2], $tolerance )
   end
 
   def test_internal_coordinates

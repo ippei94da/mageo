@@ -74,7 +74,7 @@ class Mageo::Triangle
     #一次独立チェックは initialize 時にされている筈。
 
     pos   = (pos - @vertices[0]).to_v3d
-    internal_pos = pos.to_v3di(axes)
+    internal_pos = pos.internal_coordinates(axes)
     return false if internal_pos[2].abs > tolerance #面の外にあれば false
     return false if (internal_pos[0] < 0.0 )
     return false if (1.0 < internal_pos[0])
@@ -103,7 +103,7 @@ class Mageo::Triangle
 
     # 面内の直線のとき、例外。
     endpoints_v3di = segment.endpoints.map do |v|
-      (v - @vertices[0]).to_v3di(internal_axes)
+      (v - @vertices[0]).internal_coordinates(internal_axes)
     end
     if ( (endpoints_v3di[0][2] == 0.0) && (endpoints_v3di[1][2] == 0.0) )
       raise NoIntersectionError
@@ -116,17 +116,17 @@ class Mageo::Triangle
     c_0 = endpoints_v3di[0][2]
     c_1 = endpoints_v3di[1][2]
     factor = c_0 / (c_0 - c_1)
-    intersection = (segment.endpoints[0] + (segment.to_v3d) * factor)
+    result = (segment.endpoints[0] + (segment.to_v3d) * factor)
 
     # 交点が線分上にあるか？すなわち両端点が面を挟んでいるか？
     raise NoIntersectionError if c_0 * c_1 > 0
 
     # 交点が三角形の内側にあるか？
-    if (! include?(intersection, tolerance))
+    if (! include?(result, tolerance))
       raise NoIntersectionError
     end
 
-    return intersection
+    return result
   end
 
   # 線分と並行であることを判定する。
@@ -134,7 +134,7 @@ class Mageo::Triangle
   def parallel_segment?(segment)
     #p segment.endpoints
     t = segment.endpoints.map{|v|
-      v.to_v3di(internal_axes)
+      v.internal_coordinates(internal_axes)
     }
 
     # 傾いてるときは常に false

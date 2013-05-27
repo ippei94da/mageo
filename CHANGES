@@ -1,10 +1,8 @@
-= vasputils changelog
+= mageo changelog
 
 == Master (for 0.0.3)
-
-rename
-* to_v3d
-* to_v3d を使っていたコードを internal_coordinates か to_v3d にするか、全部見てまわる。
+* Mageo::Vector3D#to_v3di is changed not to need an argument.
+* Mageo::Vector3D#internal_coordinates is added (old to_v3di(axes)).
 
 == Version (for 0.0.2) [2013-04-18] released
 * Make a namespace 'Mageo'.
