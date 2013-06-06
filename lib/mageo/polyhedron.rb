@@ -90,5 +90,35 @@ class Mageo::Polyhedron
     end
     return tmp * ( 1.0 / @vertices.size.to_f ) # 座標の平均の算出
   end
+
+  def translate!(vector)
+    @vertices.map! do |pos|
+      pos + vector
+    end
+  end
+
+  def translate(vector)
+    result = Marshal.load(Marshal.dump(self))
+    result.translate! vector
+    result
+  end
+
+  def shared_vertices(other, tolerance = 0.0)
+    results = []
+    @vertices.each do |sv|
+      flag = false
+      other.vertices.each do |ov|
+        flag = true if (ov - sv).r <= tolerance
+      end
+      results << sv if flag
+    end
+    results
+  end
+
+  #private
+
+  #def vertices_include?(vertex, vertices, tolerance)
+  #end
+
 end
 

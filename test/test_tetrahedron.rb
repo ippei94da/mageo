@@ -128,5 +128,90 @@ class TC_Tetrahedron < Test::Unit::TestCase
     assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_01, V_03))))
     assert_equal(true, (t.include_eql?(Mageo::Segment.new(V_02, V_03))))
   end
+
+
+  def test_translate!
+    @t00.translate!(Mageo::Vector3D[ 5.0, 6.0, -7.0])
+    assert_in_delta( 5.0, @t00.vertices[0][0], $tolerance)
+    assert_in_delta( 6.0, @t00.vertices[0][1], $tolerance)
+    assert_in_delta(-7.0, @t00.vertices[0][2], $tolerance)
+    assert_in_delta(15.0, @t00.vertices[1][0], $tolerance)
+    assert_in_delta( 6.0, @t00.vertices[1][1], $tolerance)
+    assert_in_delta(-7.0, @t00.vertices[1][2], $tolerance)
+    assert_in_delta( 5.0, @t00.vertices[2][0], $tolerance)
+    assert_in_delta(16.0, @t00.vertices[2][1], $tolerance)
+    assert_in_delta(-7.0, @t00.vertices[2][2], $tolerance)
+    assert_in_delta( 5.0, @t00.vertices[3][0], $tolerance)
+    assert_in_delta( 6.0, @t00.vertices[3][1], $tolerance)
+    assert_in_delta( 3.0, @t00.vertices[3][2], $tolerance)
+  end
+
+  def test_translate
+    result = @t00.translate(Mageo::Vector3D[ 5.0, 6.0, -7.0])
+    assert_in_delta( 5.0, result.vertices[0][0], $tolerance)
+    assert_in_delta( 6.0, result.vertices[0][1], $tolerance)
+    assert_in_delta(-7.0, result.vertices[0][2], $tolerance)
+    assert_in_delta(15.0, result.vertices[1][0], $tolerance)
+    assert_in_delta( 6.0, result.vertices[1][1], $tolerance)
+    assert_in_delta(-7.0, result.vertices[1][2], $tolerance)
+    assert_in_delta( 5.0, result.vertices[2][0], $tolerance)
+    assert_in_delta(16.0, result.vertices[2][1], $tolerance)
+    assert_in_delta(-7.0, result.vertices[2][2], $tolerance)
+    assert_in_delta( 5.0, result.vertices[3][0], $tolerance)
+    assert_in_delta( 6.0, result.vertices[3][1], $tolerance)
+    assert_in_delta( 3.0, result.vertices[3][2], $tolerance)
+
+    assert_in_delta( 0.0, @t00.vertices[0][0], $tolerance)
+    assert_in_delta( 0.0, @t00.vertices[0][1], $tolerance)
+    assert_in_delta( 0.0, @t00.vertices[0][2], $tolerance)
+    assert_in_delta(10.0, @t00.vertices[1][0], $tolerance)
+    assert_in_delta( 0.0, @t00.vertices[1][1], $tolerance)
+    assert_in_delta( 0.0, @t00.vertices[1][2], $tolerance)
+    assert_in_delta( 0.0, @t00.vertices[2][0], $tolerance)
+    assert_in_delta(10.0, @t00.vertices[2][1], $tolerance)
+    assert_in_delta( 0.0, @t00.vertices[2][2], $tolerance)
+    assert_in_delta( 0.0, @t00.vertices[3][0], $tolerance)
+    assert_in_delta( 0.0, @t00.vertices[3][1], $tolerance)
+    assert_in_delta(10.0, @t00.vertices[3][2], $tolerance)
+  end
+
+  def test_shared_vertices
+    v123 = Mageo::Vector3D[ 1.0, 2.0, 3.0]
+    v234 = Mageo::Vector3D[ 2.0, 3.0, 4.0]
+    v346 = Mageo::Vector3D[ 3.0, 4.0, 6.0]
+    v859 = Mageo::Vector3D[ 8.0, 5.0, 9.0]
+
+    # Mismatch is only the order of vertices.
+    t11 = Mageo::Tetrahedron.new( [ V_01, V_02, V_03, V_00 ])
+    results = @t00.shared_vertices(t11)
+    assert_equal([ V_00, V_01, V_02, V_03 ], results)
+
+    t11 = Mageo::Tetrahedron.new([V_01, V_02, v123, V_00])
+    results = @t00.shared_vertices(t11)
+    assert_equal([V_00, V_01, V_02], results)
+
+    t11 = Mageo::Tetrahedron.new([V_01, v234, v123, V_00])
+    results = @t00.shared_vertices(t11)
+    assert_equal([V_00, V_01], results)
+
+    t11 = Mageo::Tetrahedron.new([v346, v234, v123, V_00])
+    results = @t00.shared_vertices(t11)
+    assert_equal([V_00], results)
+
+    t11 = Mageo::Tetrahedron.new([v346, v234, v123, v859])
+    results = @t00.shared_vertices(t11)
+    assert_equal([], results)
+
+    v00a = Mageo::Vector3D[ 0.0+1.0E-13, 0.0+1.0E-13, 0.0+1.0E-13]
+    v01a = Mageo::Vector3D[10.0+1.0E-13, 0.0+1.0E-13, 0.0+1.0E-13]
+    v02a = Mageo::Vector3D[ 0.0+1.0E-13,10.0+1.0E-13, 0.0+1.0E-13]
+    v03a = Mageo::Vector3D[ 0.0+1.0E-13, 0.0+1.0E-13,10.0+1.0E-13]
+    t11 = Mageo::Tetrahedron.new( [ v01a, v02a, v03a, v00a ])
+    results = @t00.shared_vertices(t11)
+    assert_equal([], results)
+    results = @t00.shared_vertices(t11, 1.0E-10)
+    assert_equal([ V_00, V_01, V_02, V_03 ], results)
+  end
+
 end
 

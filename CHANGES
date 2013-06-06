@@ -3,6 +3,9 @@
 == Master (for 0.0.3)
 * Mageo::Vector3D#to_v3di is changed not to need an argument.
 * Mageo::Vector3D#internal_coordinates is added (old to_v3di(axes)).
+* Mageo::Polyhedron#translate  is added.
+* Mageo::Polyhedron#translate! is added.
+* Mageo::Polyhedron#shared_vertices is added.
 
 == Version (for 0.0.2) [2013-04-18] released
 * Make a namespace 'Mageo'.
