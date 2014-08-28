@@ -7,8 +7,8 @@ source "http://rubygems.org"
 # Include everything needed to run rake, tests, features, etc.
 group :development do
   gem "builtinextension", ">= 0.1.0"
-  gem "bundler", "~> 1.3.5"
-  gem "jeweler", "~> 1.8.3"
+  gem "bundler", "~> 1.7.2"
+  gem "jeweler", "~> 2.0.1"
   gem "malge", ">= 0.0.8"
   #gem "psych", ">= 0"
   gem "rdoc", "~> 4.0.1"
