@@ -76,7 +76,5 @@ class TC_Segment < Test::Unit::TestCase
     assert_equal(false, @s00 == Mageo::Segment.new(VEC_01, VEC_00))
     assert_equal(false, @s00 == @s01)
   end
-
-  #undef test_include?
 end
 
