@@ -47,7 +47,7 @@ class Mageo::Vector3DInternal < Mageo::Vector3D
     Mageo::Vector3D[ *result ]
   end
 
-  ## Return an array converted from self.
+  ## Return info as an array.
   #def to_a
   # @coords
   #end
