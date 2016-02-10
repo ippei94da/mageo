@@ -7,10 +7,10 @@ source "http://rubygems.org"
 # Include everything needed to run rake, tests, features, etc.
 group :development do
   gem "test-unit", "~> 3.1"
+  gem "rdoc", "~> 4.2"
   gem "bundler", "~> 1.11"
   gem "jeweler", "~> 2.0"
-  gem "rdoc", "~> 4.1"
-  gem "simplecov", "~> 0.9"
+  gem "simplecov", "~> 0.11"
   gem "builtinextension", "~> 0.1"
   gem "malge", "~> 0.0.8"
 end
