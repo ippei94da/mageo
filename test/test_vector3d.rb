@@ -427,5 +427,15 @@ class TC_Vector3D < Test::Unit::TestCase
     assert_in_delta( 0.0, vA.rotate_axis( 2, -0.25*PI )[1], $tolerance )
     assert_in_delta( 2.0, vA.rotate_axis( 2, -0.25*PI )[2], $tolerance )
   end
+
+  def test_midpoint
+    assert_equal(Mageo::Vector3D[1.0, 0.0, 0.0], @v00.midpoint(@v01))
+    assert_equal(Mageo::Vector3D[0.5, 0.5, 0.0], @v00.midpoint(@v02))
+    assert_equal(Mageo::Vector3D[0.5, 0.0, 0.5], @v00.midpoint(@v03))
+
+    assert_equal(Mageo::Vector3D[1.0, 0.0, 0.0], Mageo::Vector3D.midpoint(@v00,@v01))
+    assert_equal(Mageo::Vector3D[0.5, 0.5, 0.0], Mageo::Vector3D.midpoint(@v00,@v02))
+    assert_equal(Mageo::Vector3D[0.5, 0.0, 0.5], Mageo::Vector3D.midpoint(@v00,@v03))
+  end
 end
 

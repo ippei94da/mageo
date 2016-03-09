@@ -150,6 +150,32 @@ class TC_Axes < Test::Unit::TestCase
     assert_in_delta( 0.0, @a35.to_a[2][0], $tolerance )
     assert_in_delta( 0.0, @a35.to_a[2][1], $tolerance )
     assert_in_delta( 1.0, @a35.to_a[2][2], $tolerance )
+
+    t = @a10.to_a
+    assert_equal(Array, t.class)
+    assert_equal([[1.0]], t)
+
+    t = @a20.to_a
+    assert_equal(Array, t.class)
+    assert_equal([[1.0, 0.0], [0.0, 1.0]], t)
+
+    t = @a30.to_a
+    assert_equal(Array, t.class)
+    assert_equal([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]] , t)
+
+    t = @a40.to_a
+    assert_equal(Array, t.class)
+    assert_equal( [
+        [1.0, 0.0, 0.0, 0.0],
+        [0.0, 1.0, 0.0, 0.0],
+        [0.0, 0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0, 1.0]
+      ], t
+    )
+
+    t = @a32.to_a
+    assert_equal(Array, t.class)
+    assert_equal( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.5], [0.0, 0.5, 0.5] ] , t)
   end
 
   def test_paren # []
@@ -177,32 +203,5 @@ class TC_Axes < Test::Unit::TestCase
     assert_raise( NoMethodError ) { @a31.map{ |vec| vec * 2.0 } }
   end
 
-  def test_to_a
-    t = @a10.to_a
-    assert_equal(Array, t.class)
-    assert_equal([[1.0]], t)
-
-    t = @a20.to_a
-    assert_equal(Array, t.class)
-    assert_equal([[1.0, 0.0], [0.0, 1.0]], t)
-
-    t = @a30.to_a
-    assert_equal(Array, t.class)
-    assert_equal([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]] , t)
-
-    t = @a40.to_a
-    assert_equal(Array, t.class)
-    assert_equal( [
-        [1.0, 0.0, 0.0, 0.0],
-        [0.0, 1.0, 0.0, 0.0],
-        [0.0, 0.0, 1.0, 0.0],
-        [0.0, 0.0, 0.0, 1.0]
-      ], t
-    )
-
-    t = @a32.to_a
-    assert_equal(Array, t.class)
-    assert_equal( [ [0.5, 0.5, 0.0], [0.5, 0.0, 0.5], [0.0, 0.5, 0.5] ] , t)
-  end
 end
 

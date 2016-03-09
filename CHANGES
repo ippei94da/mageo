@@ -1,6 +1,7 @@
 = mageo changelog
 
 == Master (for 0.0.4)
+* Mageo::Vector3D#midpoint is added
 
 == Version (for 0.0.3) [2014-08-30] released
 * Mageo::Vector3D#to_v3di is changed not to need an argument.

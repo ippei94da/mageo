@@ -98,6 +98,10 @@ class Mageo::Vector3D < Vector
     self.angle_radian(vec0, vec1) * (180.0 / Math::PI)
   end
 
+  def self.midpoint(vec1, vec2)
+    (vec1.to_v3d + vec2.to_v3d)/2.0
+  end
+
   # Instance methods
 
   def [](index)
@@ -235,5 +239,9 @@ class Mageo::Vector3D < Vector
     tmp = Marshal.load(Marshal.dump(self))
     tmp.rotate_axis!(axis, radian)
     tmp
+  end
+
+  def midpoint(other)
+    self.class.midpoint(self, other)
   end
 end
