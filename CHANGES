@@ -1,6 +1,8 @@
 = mageo changelog
 
-== Master (for 0.0.4)
+== Master (for 0.0.5)
+
+== Version (for 0.0.4) [2016-03-11] released
 * Mageo::Vector3D#midpoint is added
 
 == Version (for 0.0.3) [2014-08-30] released
