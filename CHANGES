@@ -1,6 +1,8 @@
 = mageo changelog
 
 == Master (for 0.0.5)
+* Bugfix of tests.
+* Delete meaningless codes.
 
 == Version (for 0.0.4) [2016-03-11] released
 * Mageo::Vector3D#midpoint is added

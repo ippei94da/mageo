@@ -9,7 +9,7 @@ require "helper"
 #require "mageo/polar2d.rb"
 
 
-class TC_Vector < Test::Unit::TestCase
+class TC_Vector_Polar < Test::Unit::TestCase
   include Math
 
   $tolerance = 10.0**(-10)

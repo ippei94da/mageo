@@ -23,7 +23,7 @@ class Mageo::Vector3DInternal < Mageo::Vector3D
   #要素数3以外では例外 Mageo::Vector3DInternalSizeError を発生。
   def self.[]( *args )
     raise RangeError unless args.size == 3
-    super *args
+    super(*args)
   end
 
   ## Return order of vector. In this class, always three.

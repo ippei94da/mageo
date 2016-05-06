@@ -56,15 +56,6 @@ class Mageo::Axes
     self.class.independent?(@axes)
   end
 
-  def to_a
-    result = [
-      @axes[0].to_a,
-      @axes[1].to_a,
-      @axes[2].to_a,
-    ]
-    return result
-  end
-
   # Item access for three axes in cartesian coordinates.
   # Note: []= method is not provided.
   def [](index)

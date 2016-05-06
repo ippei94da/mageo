@@ -7,7 +7,7 @@ require 'matrix'
 #require 'mageo/vector3d.rb'
 #require 'mageo/vector3dinternal.rb'
 
-class TC_Array < Test::Unit::TestCase
+class TC_Array_V3DI < Test::Unit::TestCase
   $tolerance = 10.0**(-10)
 
   def setup

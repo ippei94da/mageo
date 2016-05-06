@@ -3,7 +3,7 @@
 require "helper"
 require "matrix"
 
-class TC_Array < Test::Unit::TestCase
+class TC_Array_V3D < Test::Unit::TestCase
   $tolerance = 10.0**(-10)
 
   def setup
@@ -20,7 +20,7 @@ class TC_Array < Test::Unit::TestCase
   end
 end
 
-class TC_Vector < Test::Unit::TestCase
+class TC_Vector_V3D < Test::Unit::TestCase
   include Math
 
   $tolerance = 10.0**(-10)

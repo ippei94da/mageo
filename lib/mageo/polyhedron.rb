@@ -32,7 +32,7 @@ class Mageo::Polyhedron
 
   def edges
     results = []
-    edges = triangles.each do |triangle|
+    triangles.each do |triangle|
       triangle.edges.each do |edge|
         results << edge unless results.include_eql?(edge)
       end

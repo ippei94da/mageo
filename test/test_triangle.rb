@@ -167,8 +167,8 @@ class TC_Triangle < Test::Unit::TestCase
     assert_equal(false, @t00.parallel_segment?(seg01))
 
     # 平行ではない。
-    pos2 = Mageo::Vector3D[0.0,10.0, 0.0]
-    pos3 = Mageo::Vector3D[0.0,10.0, 2.0]
+    pos0 = Mageo::Vector3D[0.0,10.0, 0.0]
+    pos1 = Mageo::Vector3D[0.0,10.0, 2.0]
     seg01 = Mageo::Segment.new(pos0, pos1)
     assert_equal(false, @t00.parallel_segment?(seg01))
   end
