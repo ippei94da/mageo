@@ -1,6 +1,8 @@
 = mageo changelog
 
-== Master (for 0.0.5)
+== Master (for 0.0.6)
+
+== Version (for 0.0.5) [2016-05-09] released
 * Bugfix of tests.
 * Delete meaningless codes.
 
