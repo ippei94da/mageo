@@ -22,17 +22,19 @@ class Mageo::Triangle
   #座標が整数で入っていたとしても内部的には Float に変換して使用する。
   #3点が1直線上に並んでいて三角形を囲まない場合は
   #例外 Mageo::Triangle::LinearException を投げる。
-  def initialize( vertices )
-    raise InitializeError unless vertices.methods.include?( :size )
-    raise InitializeError if vertices.size != 3
-    vertices.each do |pos|
-      raise InitializeError if pos.size != 3
-      raise InitializeError unless pos.methods.include?( :[] )
-      raise InitializeError unless pos.methods.include?( :map )
-    end
-    @vertices = vertices.map do |pos| 
-      ( pos.map { |i| i.to_f }) . to_v3d
-    end
+  #def initialize( vertices )
+  def initialize( v0, v1, v2 )
+    #raise InitializeError unless vertices.methods.include?( :size )
+    #raise InitializeError if vertices.size != 3
+    #vertices.each do |pos|
+    #  raise InitializeError if pos.size != 3
+    #  raise InitializeError unless pos.methods.include?( :[] )
+    #  raise InitializeError unless pos.methods.include?( :map )
+    #end
+    #@vertices = vertices.map do |pos| 
+    #  ( pos.map { |i| i.to_f }) . to_v3d
+    #end
+    @vertices = [v0.to_v3d, v1.to_v3d, v2.to_v3d]
 
     #Checking on linear.
     edge1 = @vertices[1] - @vertices[0]

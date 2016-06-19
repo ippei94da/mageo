@@ -9,10 +9,10 @@ class Mageo::Cylinder
 
   # 座標と半径
   # positions は 両底面の中心座標を入れた配列。
-  def initialize(position, radius)
+  def initialize(position0, position1, radius)
     @positions = [
-      Mageo::Vector3D[*position[0]],
-      Mageo::Vector3D[*position[1]]
+      Mageo::Vector3D[*position0],
+      Mageo::Vector3D[*position1]
     ]
     @radius = radius
   end

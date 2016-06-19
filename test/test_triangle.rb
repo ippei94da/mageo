@@ -20,26 +20,17 @@ class TC_Triangle < Test::Unit::TestCase
   VEC_Z = Mageo::Vector3D[0.0, 0.0, 1.0]
 
   def setup
-    @t00 = Mageo::Triangle.new([VEC_O, VEC_X, VEC_Y])
-    @t01 = Mageo::Triangle.new([VEC_X, VEC_Y, VEC_Z])
-    @t02 = Mageo::Triangle.new([[10.0,10.0,10.0], [20.0,10.0,10.0], [10.0,20.0,10.0]])
-    @t03 = Mageo::Triangle.new([[10.0,20.0,30.0], [ 0.0,20.0,30.0], [10.0, 0.0,30.0]])
+    @t00 = Mageo::Triangle.new(VEC_O, VEC_X, VEC_Y)
+    @t01 = Mageo::Triangle.new(VEC_X, VEC_Y, VEC_Z)
+    @t02 = Mageo::Triangle.new([10.0,10.0,10.0], [20.0,10.0,10.0], [10.0,20.0,10.0])
+    @t03 = Mageo::Triangle.new([10.0,20.0,30.0], [ 0.0,20.0,30.0], [10.0, 0.0,30.0])
   end
 
   def test_initialize
-    assert_raise( ArgumentError ){ Mageo::Triangle.new }
-    assert_raise( ArgumentError ){ Mageo::Triangle.new() }
-    assert_raise( Mageo::Triangle::InitializeError ){ Mageo::Triangle.new( nil ) }
-    assert_raise( Mageo::Triangle::InitializeError ){ Mageo::Triangle.new( [] ) }
-    assert_raise( Mageo::Triangle::InitializeError ){ Mageo::Triangle.new( [ 0, 1 ] ) }
-    assert_raise( Mageo::Triangle::InitializeError ){ Mageo::Triangle.new( [ 0, 1, 2 ] ) }
-    assert_raise( Mageo::Triangle::InitializeError ){ Mageo::Triangle.new( [ 0, 1, 2, 3 ] ) } 
-    assert_raise( Mageo::Triangle::InitializeError ){ Mageo::Triangle.new( [ [ 0, 0, 0 ], [ 1, 1, 1 ], [ 2, 3 ] ] ) } #3次元座標になっていないものがある。
+    assert_raise( Mageo::Triangle::LinearException ){ Mageo::Triangle.new( [ 0, 0, 0 ], [ 0, 0, 0 ], [ 2, 2, 2 ] ) } #同一の点を含む。
+    assert_raise( Mageo::Triangle::LinearException ){ Mageo::Triangle.new( [ 0, 0, 0 ], [ 1, 1, 1 ], [ 2, 2, 2 ] ) } #直線上に並ぶ
 
-    assert_raise( Mageo::Triangle::LinearException ){ Mageo::Triangle.new( [ [ 0, 0, 0 ], [ 0, 0, 0 ], [ 2, 2, 2 ] ] ) } #同一の点を含む。
-    assert_raise( Mageo::Triangle::LinearException ){ Mageo::Triangle.new( [ [ 0, 0, 0 ], [ 1, 1, 1 ], [ 2, 2, 2 ] ] ) } #直線上に並ぶ
-
-    assert_equal( Mageo::Triangle, Mageo::Triangle.new( [ Mageo::Vector3D[ 0, 0, 0 ], Mageo::Vector3D[ 1, 0, 0 ], Mageo::Vector3D[ 0, 1, 0 ] ] ).class )
+    assert_equal( Mageo::Triangle, Mageo::Triangle.new( Mageo::Vector3D[ 0, 0, 0 ], Mageo::Vector3D[ 1, 0, 0 ], Mageo::Vector3D[ 0, 1, 0 ] ).class )
   end
 
   def test_vertices
@@ -190,44 +181,44 @@ class TC_Triangle < Test::Unit::TestCase
       @t00.equivalent?([[ 0.0, 0.0, 0.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0]])
     }
 
-    t = Mageo::Triangle.new([[ 0.0, 0.0, 0.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0]])
+    t = Mageo::Triangle.new([ 0.0, 0.0, 0.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0])
     assert_equal(true , @t00.eql?(t))
 
-    t = Mageo::Triangle.new([[ 1.0, 0.0, 0.0], [ 0.0, 0.0, 0.0], [ 0.0, 1.0, 0.0]])
+    t = Mageo::Triangle.new([ 1.0, 0.0, 0.0], [ 0.0, 0.0, 0.0], [ 0.0, 1.0, 0.0])
     assert_equal(true , @t00.eql?(t))
 
-    t = Mageo::Triangle.new([[ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0], [ 0.0, 0.0, 0.0]])
+    t = Mageo::Triangle.new([ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0], [ 0.0, 0.0, 0.0])
     assert_equal(true , @t00.eql?(t))
 
-    t = Mageo::Triangle.new([[ 0.0, 0.0, 1.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0]])
+    t = Mageo::Triangle.new([ 0.0, 0.0, 1.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0])
     assert_equal(false, @t00.eql?(t))
 
     # tolerance を設定の上 0.0
-    t = Mageo::Triangle.new([[ 0.0, 0.0, 1.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0]])
+    t = Mageo::Triangle.new([ 0.0, 0.0, 1.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0])
     assert_equal(false, @t00.eql?(t, 0.0))
 
     # tolerance を 1.0 に設定
-    t = Mageo::Triangle.new([[ 0.0, 0.0, 1.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0]])
+    t = Mageo::Triangle.new([ 0.0, 0.0, 1.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0])
     assert_equal(true, @t00.eql?(t, 1.0))
   end
 
   def test_equal2
-    t = Mageo::Triangle.new([[ 0.0, 0.0, 0.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0]])
+    t = Mageo::Triangle.new([ 0.0, 0.0, 0.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0])
     assert_equal(true , @t00 == t)
 
-    t = Mageo::Triangle.new([[ 1.0, 0.0, 0.0], [ 0.0, 0.0, 0.0], [ 0.0, 1.0, 0.0]])
+    t = Mageo::Triangle.new([ 1.0, 0.0, 0.0], [ 0.0, 0.0, 0.0], [ 0.0, 1.0, 0.0])
     assert_equal(false, @t00 == t)
 
-    t = Mageo::Triangle.new([[ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0], [ 0.0, 0.0, 0.0]])
+    t = Mageo::Triangle.new([ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0], [ 0.0, 0.0, 0.0])
     assert_equal(false, @t00 == t)
 
-    t = Mageo::Triangle.new([[ 0.0, 0.0, 1.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0]])
+    t = Mageo::Triangle.new([ 0.0, 0.0, 1.0], [ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0])
     assert_equal(false, @t00 == t)
   end
 
   def test_internal_axes
-    @t01 = Mageo::Triangle.new([[ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0], [ 0.0, 0.0, 1.0]])
-    @t02 = Mageo::Triangle.new([[10.0,10.0,10.0], [20.0,10.0,10.0], [10.0,20.0,10.0]])
+    @t01 = Mageo::Triangle.new([ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0], [ 0.0, 0.0, 1.0])
+    @t02 = Mageo::Triangle.new([10.0,10.0,10.0], [20.0,10.0,10.0], [10.0,20.0,10.0])
 
     t = Mageo::Axes.new([[ 1.0, 0.0, 0.0], [ 0.0, 1.0, 0.0], [ 0.0, 0.0, 1.0]])
     assert_equal(t, @t00.internal_axes)

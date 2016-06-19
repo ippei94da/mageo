@@ -9,7 +9,8 @@ require "helper"
 
 class TC_Cylinder < Test::Unit::TestCase
   def setup
-    @c00 = Mageo::Cylinder.new([[0.0, 1.0, 2.0], [1.0, 2.0, 3.0]], 3.0)
+    #@c00 = Mageo::Cylinder.new([[0.0, 1.0, 2.0], [1.0, 2.0, 3.0]], 3.0)
+    @c00 = Mageo::Cylinder.new([0.0, 1.0, 2.0], [1.0, 2.0, 3.0], 3.0)
   end
 
   def test_initialize

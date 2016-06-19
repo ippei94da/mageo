@@ -1,6 +1,10 @@
 = mageo changelog
 
-== Master (for 0.0.6)
+== Master (for 0.1.0)
+* Cylinder#initialize, argument positions to position0 and position1
+* Triangle#initialize, vertices to (v0, v1, v3)
+* Mageo::Tetrahedron; @vertex_indices_of_triangles was changed to VERTEX_INDICES_OF_TRIANGLES
+* Polyhedron and Octahedron class was obsoleted
 
 == Version (for 0.0.5) [2016-05-09] released
 * Bugfix of tests.
