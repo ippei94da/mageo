@@ -19,6 +19,10 @@ class TC_Polar3D < Test::Unit::TestCase
     @p3d03 = Mageo::Polar3D.new( 2.0, 0.25*PI, 0.25*PI)
   end
 
+  #def test_self_polar2cartesian
+  #  
+  #end
+
   def test_to_v3d
     assert_equal( Mageo::Vector3D, @p3d00.to_v3d.class )
     assert_in_delta( 0.0, @p3d00.to_v3d[0], $tolerance )
@@ -40,7 +44,6 @@ class TC_Polar3D < Test::Unit::TestCase
     assert_in_delta( 1.0 , @p3d03.to_v3d[0], $tolerance)
     assert_in_delta( 1.0 , @p3d03.to_v3d[1], $tolerance)
     assert_in_delta( Math::sqrt(2.0), @p3d03.to_v3d[2], $tolerance )
-
   end
 
   def test_minimize_phi!
