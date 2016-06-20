@@ -27,7 +27,7 @@ class Mageo::Tetrahedron
   end
 
   def triangles
-    results = Mageo::Tetrahedron::VERTEX_INDICES_OF_TRIANGLES.map do |indices|
+    results = VERTEX_INDICES_OF_TRIANGLES.map do |indices|
       Mageo::Triangle.new( *(indices.map{|i| @vertices[i] }) )
     end
     return results
@@ -95,7 +95,7 @@ class Mageo::Tetrahedron
   #end
 
 
-  # vertices には四面体の頂点を順不同で入れた Array。
+  ## v0, v1, v2, v3 are 四面体の頂点
   def initialize( v0, v1, v2, v3 )
     #raise InitializeError if vertices.class != Array
     #raise InitializeError if vertices.size != 4
