@@ -1,19 +1,22 @@
 = mageo changelog
 
-== Master (for 0.1.0)
+<!-- master -->
+
+== Version 0.1.0 [2016-07-12] released
+
 * Cylinder#initialize, argument positions to position0 and position1
 * Triangle#initialize, vertices to (v0, v1, v3)
 * Mageo::Tetrahedron; @vertex_indices_of_triangles was changed to VERTEX_INDICES_OF_TRIANGLES
 * Polyhedron and Octahedron class was obsoleted
 
-== Version (for 0.0.5) [2016-05-09] released
+== Version 0.0.5 [2016-05-09] released
 * Bugfix of tests.
 * Delete meaningless codes.
 
-== Version (for 0.0.4) [2016-03-11] released
+== Version 0.0.4 [2016-03-11] released
 * Mageo::Vector3D#midpoint is added
 
-== Version (for 0.0.3) [2014-08-30] released
+== Version 0.0.3 [2014-08-30] released
 * Mageo::Vector3D#to_v3di is changed not to need an argument.
 * Mageo::Vector3D#internal_coordinates is added (old to_v3di(axes)).
 * Mageo::Polyhedron#translate  is added.
@@ -21,7 +24,7 @@
 * Mageo::Polyhedron#shared_vertices is added.
 * Update dependency on otehr gems.
 
-== Version (for 0.0.2) [2013-04-18] released
+== Version 0.0.2 [2013-04-18] released
 * Make a namespace 'Mageo'.
 * Most of classes are included into the namespace 'Mageo'.
 * Adjust to malge-0.0.8
@@ -29,7 +32,7 @@
 * Set default value of tolerance=0.0 in argument of Polyhedron#include?
 * Adjust to builtinextension-0.1.0.
 
-== Version (for 0.0.1)
+== Version 0.0.1
 * Change indent style from tab char to two spaces.
 * Adjust to malge 0.0.2.
 
